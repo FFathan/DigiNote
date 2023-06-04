@@ -13,6 +13,7 @@ fun DetailsTopBar(
     noteTitle: String,
     showDelete: Boolean = true,
     onNavigateToHome: () -> Unit = {},
+    onDeleteNote: () -> Unit = {}
 ) {
     CenterAlignedTopAppBar(
         title = {
@@ -30,7 +31,7 @@ fun DetailsTopBar(
         },
         actions = {
             if(showDelete) {
-                IconButton(onClick = { onNavigateToHome() }) {
+                IconButton(onClick = { onDeleteNote() }) {
                     Icon(
                         imageVector = Icons.Filled.Delete,
                         contentDescription = "Delete note"

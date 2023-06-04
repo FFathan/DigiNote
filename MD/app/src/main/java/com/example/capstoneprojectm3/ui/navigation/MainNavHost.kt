@@ -56,7 +56,15 @@ fun MainNavHost(
             )
         }
         composable(Screen.Details.route) {
-            Details(getDetailsNoteExample())
+            Details(
+                getDetailsNoteExample(),
+                onNavigateToHome = { navController.navigate(Screen.Home.route) {
+                    popUpTo(Screen.Home.route) { inclusive = true}
+                } },
+                onDeleteNote = { navController.navigate(Screen.Home.route) {
+                    popUpTo(Screen.Home.route) { inclusive = true}
+                } },
+            )
         }
         composable(Screen.AddNote.route) {
             AddNote(

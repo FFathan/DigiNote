@@ -20,10 +20,20 @@ import com.example.capstoneprojectm3.ui.theme.CapstoneProjectM3Theme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Details(note: Note) {
+fun Details(
+    note: Note,
+    onNavigateToHome: () -> Unit = {},
+    onDeleteNote: () -> Unit = {}) {
     var selectedTabIndex by rememberSaveable { mutableStateOf(0) }
 
-    Scaffold( topBar = { DetailsTopBar(note.title) } ) { innerPadding ->
+    Scaffold(
+        topBar = { DetailsTopBar(
+            note.title,
+            showDelete = true,
+            onNavigateToHome = { onNavigateToHome() },
+            onDeleteNote = { onDeleteNote() }
+        ) } ) { innerPadding ->
+
         Column( modifier = Modifier.padding(innerPadding) ) {
             TabRow(selectedTabIndex = selectedTabIndex) {
                 Tab(
