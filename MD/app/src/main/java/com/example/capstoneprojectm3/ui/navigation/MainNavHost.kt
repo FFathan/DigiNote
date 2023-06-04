@@ -7,13 +7,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.capstoneprojectm3.ui.data.Note
 import com.example.capstoneprojectm3.ui.page.*
+import com.example.capstoneprojectm3.ui.page.home.Home
 import com.example.capstoneprojectm3.ui.theme.CapstoneProjectM3Theme
 
 @Composable
@@ -50,7 +50,7 @@ fun MainNavHost(
         }
         composable(Screen.Home.route) {
             Home(
-                getHomeNoteListExample(),
+//                getHomeNoteListExample(),
                 onNavigateToDetails = { navController.navigate(Screen.Details.route) },
                 onNavigateToAddNote = { navController.navigate(Screen.AddNote.route) }
             )
