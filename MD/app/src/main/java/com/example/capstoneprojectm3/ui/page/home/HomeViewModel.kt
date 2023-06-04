@@ -1,21 +1,30 @@
 package com.example.capstoneprojectm3.ui.page.home
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.capstoneprojectm3.data.NoteRepository
 import com.example.capstoneprojectm3.ui.data.Note
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val repository: NoteRepository) : ViewModel() {
     private val _uiState: MutableStateFlow<HomeUiState> =
         MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState>
         get() = _uiState
 
     fun fetchNoteList() {
-        _uiState.value = HomeUiState(
-            isLoading = false,
-            isSuccess = true,
-            noteList = getHomeNoteListExample())
+        viewModelScope.launch {
+            repository.getDummyListNote()
+                .collect { noteList ->
+                    _uiState.value = HomeUiState(
+                        isLoading = false,
+                        isSuccess = true,
+                        noteList = noteList)
+                }
+        }
     }
 }
 
@@ -25,20 +34,3 @@ data class HomeUiState (
     val isFailed: Boolean = false,
     val noteList: List<Note> = listOf()
 )
-
-fun getHomeNoteListExample(): List<Note> {
-    val title = "Note Title"
-    val date = "DD/MM/YYYY 12:34:56"
-    val description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-    val listNoteExample = mutableListOf<Note>()
-    for (id in 1..100) {
-        val note = Note(
-            id,
-            "$title $id",
-            date,
-            description
-        )
-        listNoteExample.add(note)
-    }
-    return listNoteExample
-}

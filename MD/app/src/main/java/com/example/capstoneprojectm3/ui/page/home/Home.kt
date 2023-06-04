@@ -22,6 +22,8 @@ import com.example.capstoneprojectm3.ui.data.Note
 import com.example.capstoneprojectm3.ui.theme.CapstoneProjectM3Theme
 
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.capstoneprojectm3.ViewModelFactory
+import com.example.capstoneprojectm3.di.Injection
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,7 +31,9 @@ fun Home(
 //    noteList: List<Note>,
     onNavigateToDetails: () -> Unit = {},
     onNavigateToAddNote: () -> Unit = {},
-    viewModel: HomeViewModel = viewModel()
+    viewModel: HomeViewModel = viewModel(
+        factory = ViewModelFactory(Injection.provideRepository())
+    )
 ) {
     viewModel.fetchNoteList()
     val uiState by viewModel.uiState.collectAsState()

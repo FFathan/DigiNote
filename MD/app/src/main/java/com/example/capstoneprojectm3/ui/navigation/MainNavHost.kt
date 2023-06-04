@@ -79,23 +79,6 @@ fun MainNavHost(
     }
 }
 
-fun getHomeNoteListExample(): List<Note> {
-    val title = "Note Title"
-    val date = "DD/MM/YYYY 12:34:56"
-    val description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-    val listNoteExample = mutableListOf<Note>()
-    for (id in 1..100) {
-        val note = Note(
-            id,
-            "$title $id",
-            date,
-            description
-        )
-        listNoteExample.add(note)
-    }
-    return listNoteExample
-}
-
 fun getDetailsNoteExample(): Note {
     val noteId = 1
     val title = "Note Title 1"
