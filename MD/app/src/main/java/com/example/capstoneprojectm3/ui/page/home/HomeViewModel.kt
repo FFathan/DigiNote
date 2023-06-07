@@ -17,7 +17,14 @@ class HomeViewModel(private val repository: NoteRepository) : ViewModel() {
 
     fun fetchNoteList() {
         viewModelScope.launch {
-            repository.getDummyListNote()
+//            repository.getDummyListNote()
+//                .collect { noteList ->
+//                    _uiState.value = HomeUiState(
+//                        isLoading = false,
+//                        isSuccess = true,
+//                        noteList = noteList)
+//                }
+            repository.mockGetAllNotes("auth-token", 1, 1)
                 .collect { noteList ->
                     _uiState.value = HomeUiState(
                         isLoading = false,

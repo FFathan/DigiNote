@@ -1,5 +1,8 @@
 package com.example.capstoneprojectm3.data
 
+import com.example.capstoneprojectm3.apihandler.ApiService
+import com.example.capstoneprojectm3.apihandler.GetAllNotesResponse
+import com.example.capstoneprojectm3.apihandler.mock.MockApiService
 import com.example.capstoneprojectm3.ui.data.Note
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -7,6 +10,10 @@ import kotlinx.coroutines.flow.flowOf
 class NoteRepository {
     fun getDummyListNote(): Flow<List<Note>> {
         return flowOf(getHomeNoteListExample())
+    }
+
+    suspend fun mockGetAllNotes(authToken: String, page: Int, size: Int): Flow<List<Note>> {
+        return flowOf(MockApiService().getAllNotes(authToken, page, size).noteList)
     }
 
     companion object {
