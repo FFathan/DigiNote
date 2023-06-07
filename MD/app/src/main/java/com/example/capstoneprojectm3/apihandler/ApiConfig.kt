@@ -1,6 +1,7 @@
 package com.example.capstoneprojectm3.apihandler
 
 import com.example.capstoneprojectm3.BuildConfig
+import com.example.capstoneprojectm3.apihandler.mock.MockApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,6 +20,9 @@ class ApiConfig {
 
             val retrofit = getRetrofit(client, BASE_URL)
             return retrofit.create(ApiService::class.java)
+        }
+        private fun mockGetApiService(): MockApiService {
+            return MockApiService()
         }
 
         fun getApiService(authToken: String): ApiService {
@@ -55,5 +59,7 @@ class ApiConfig {
                 .client(client)
                 .build()
         }
+
+
     }
 }

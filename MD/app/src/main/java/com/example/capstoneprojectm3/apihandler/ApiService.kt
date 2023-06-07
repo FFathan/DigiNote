@@ -8,55 +8,55 @@ import retrofit2.http.*
 interface ApiService {
     @FormUrlEncoded
     @POST("register")
-    fun register(
+    suspend fun register(
         @Field("username") username: String,
         @Field("email") email: String,
         @Field("password") password: String
-    ): Call<RegisterResponse>
+    ): RegisterResponse
 
     @FormUrlEncoded
     @POST("login")
-    fun login(
+    suspend fun login(
         @Field("usernameOrEmail") email: String,
         @Field("password") password: String
-    ): Call<LoginResponse>
+    ): LoginResponse
 
     @GET("notes")
-    fun getAllNotes(
+    suspend fun getAllNotes(
         @Query("authToken") authToken: String,
         @Query("page") page: Int,
         @Query("size") size: Int,
-    ): Call<GetAllNotesResponse>
+    ): GetAllNotesResponse
 
     @GET("notes/{id}")
-    fun getNoteById(
+    suspend fun getNoteById(
         @Path("id") id: String,
         @Query("authToken") authToken: String,
         @Query("idNote") noteId: String,
-    ): Call<GetNoteByIdResponse>
+    ): GetNoteByIdResponse
 
     @Multipart
     @POST("notes")
-    fun createNote(
+    suspend fun createNote(
         @Part file: MultipartBody.Part,
         @Part("authToken") authToken: RequestBody,
         @Part("title") title: RequestBody,
         @Part("description") description: RequestBody
-    ): Call<CreateNoteResponse>
+    ): CreateNoteResponse
 
     @FormUrlEncoded
     @POST("notes/edit")
-    fun editNote(
+    suspend fun editNote(
         @Field("authToken") authToken: String,
         @Field("noteId") noteId: String,
         @Field("title") title: String,
         @Field("date") date: String,
         @Field("description") description: String,
-    ): Call<EditNoteResponse>
+    ): EditNoteResponse
 
     @DELETE("notes/delete")
-    fun deleteNote(
+    suspend fun deleteNote(
         @Query("authToken") authToken: String,
         @Query("idNote") noteId: String,
-    ): Call<DeleteNoteResponse>
+    ): DeleteNoteResponse
 }
