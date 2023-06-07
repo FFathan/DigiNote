@@ -21,7 +21,10 @@ class ApiConfig {
             val retrofit = getRetrofit(client, BASE_URL)
             return retrofit.create(ApiService::class.java)
         }
-        private fun mockGetApiService(): MockApiService {
+        fun mockGetApiService(): MockApiService {
+            return MockApiService()
+        }
+        fun mockGetApiService(authToken: String): MockApiService {
             return MockApiService()
         }
 

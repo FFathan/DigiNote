@@ -15,6 +15,13 @@ class HomeViewModel(private val repository: NoteRepository) : ViewModel() {
     val uiState: StateFlow<HomeUiState>
         get() = _uiState
 
+    fun isRepositoryAuthorized(): Boolean {
+        return repository.isAuthorized
+    }
+    fun authorizeRepository(authToken: String){
+        repository.authorizeApiService(authToken)
+    }
+
     fun fetchNoteList() {
         viewModelScope.launch {
 //            repository.getDummyListNote()

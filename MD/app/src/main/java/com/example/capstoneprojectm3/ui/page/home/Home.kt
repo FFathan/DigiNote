@@ -35,6 +35,7 @@ fun Home(
         factory = ViewModelFactory(Injection.provideRepository())
     )
 ) {
+    if(!viewModel.isRepositoryAuthorized()) viewModel.authorizeRepository("auth-token")
     viewModel.fetchNoteList()
     val uiState by viewModel.uiState.collectAsState()
     val noteList = uiState.noteList
