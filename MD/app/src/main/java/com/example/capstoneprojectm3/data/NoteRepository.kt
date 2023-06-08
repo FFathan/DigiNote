@@ -1,9 +1,6 @@
 package com.example.capstoneprojectm3.data
 
-import com.example.capstoneprojectm3.apihandler.ApiConfig
-import com.example.capstoneprojectm3.apihandler.ApiService
-import com.example.capstoneprojectm3.apihandler.GetAllNotesResponse
-import com.example.capstoneprojectm3.apihandler.LoginResponse
+import com.example.capstoneprojectm3.apihandler.*
 import com.example.capstoneprojectm3.apihandler.mock.MockApiService
 import com.example.capstoneprojectm3.ui.data.Note
 import kotlinx.coroutines.flow.Flow
@@ -21,12 +18,16 @@ class NoteRepository {
         isAuthorized = true
     }
 
-    suspend fun mockGetAllNotes(authToken: String, page: Int, size: Int): Flow<List<Note>> {
-        return flowOf(apiService.getAllNotes(authToken, page, size).noteList)
+    suspend fun mockSignUp(username: String, email: String, password: String): RegisterResponse {
+        return apiService.register(username, email, password)
     }
 
     suspend fun mockLogin(username: String, password: String): LoginResponse {
         return apiService.login(username, password)
+    }
+
+    suspend fun mockGetAllNotes(authToken: String, page: Int, size: Int): Flow<List<Note>> {
+        return flowOf(apiService.getAllNotes(authToken, page, size).noteList)
     }
 
     companion object {

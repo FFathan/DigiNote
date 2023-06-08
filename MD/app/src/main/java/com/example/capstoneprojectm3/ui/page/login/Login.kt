@@ -40,7 +40,7 @@ fun Login(
 ) {
 //    val uiState by viewModel.uiState.collectAsState()
     LaunchedEffect(Unit){
-        viewModel.navigateIfHasLoggedInBefore(onNavigateToHome)
+//        viewModel.navigateIfHasLoggedInBefore(onNavigateToHome)
     }
 
     var username by rememberSaveable { mutableStateOf(justSignedUpUsername) }

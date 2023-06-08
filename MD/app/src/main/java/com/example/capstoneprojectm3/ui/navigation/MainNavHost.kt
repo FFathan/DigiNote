@@ -15,6 +15,7 @@ import com.example.capstoneprojectm3.ui.data.Note
 import com.example.capstoneprojectm3.ui.page.*
 import com.example.capstoneprojectm3.ui.page.home.Home
 import com.example.capstoneprojectm3.ui.page.login.Login
+import com.example.capstoneprojectm3.ui.page.signup.SignUp
 import com.example.capstoneprojectm3.ui.theme.CapstoneProjectM3Theme
 
 @Composable
