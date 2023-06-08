@@ -1,5 +1,6 @@
 package com.example.capstoneprojectm3.ui.page.login
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.capstoneprojectm3.DatastorePreferences
@@ -10,10 +11,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val repository: NoteRepository, private val preferences: DatastorePreferences) : ViewModel() {
-    private val _uiState: MutableStateFlow<LoginUiState> =
-        MutableStateFlow(LoginUiState())
-    val uiState: StateFlow<LoginUiState>
-        get() = _uiState
+//    private val _uiState: MutableStateFlow<LoginUiState> =
+//        MutableStateFlow(LoginUiState())
+//    val uiState: StateFlow<LoginUiState>
+//        get() = _uiState
 
     fun login(username: String, password: String, onNavigateToHome: () -> Unit) {
         viewModelScope.launch {
@@ -23,24 +24,23 @@ class LoginViewModel(private val repository: NoteRepository, private val prefere
             if(isLoggedIn) {
                 preferences.setLoginStatus(true)
                 preferences.setAuthToken(authToken)
-
-//                _uiState.value = LoginUiState(
-//                    isLoading = false,
-//                    isSuccess = true,
-//                    isFailed = false,
-//                    isLoggedIn = true,
-//                    authToken = authToken
-//                )
                 onNavigateToHome()
+            }
+        }
+    }
+    fun navigateIfHasLoggedInBefore(onNavigateToHome: () -> Unit) {
+        viewModelScope.launch {
+            preferences.getLoginStatus().collect { isLoggedIn ->
+                if(isLoggedIn) onNavigateToHome()
             }
         }
     }
 }
 
-data class LoginUiState (
-    val isLoading: Boolean = true,
-    val isSuccess: Boolean = false,
-    val isFailed: Boolean = false,
-    val isLoggedIn: Boolean = false,
-    val authToken: String = ""
-)
+//data class LoginUiState (
+//    val isLoading: Boolean = true,
+//    val isSuccess: Boolean = false,
+//    val isFailed: Boolean = false,
+//    val isLoggedIn: Boolean = false,
+//    val authToken: String = ""
+//)

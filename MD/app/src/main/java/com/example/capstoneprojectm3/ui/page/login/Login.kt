@@ -38,10 +38,10 @@ fun Login(
             DatastorePreferences.getInstance(LocalContext.current.dataStore))
     )
 ) {
-    val uiState by viewModel.uiState.collectAsState()
-//    if(uiState.isLoggedIn) {
-//        onNavigateToHome()
-//    }
+//    val uiState by viewModel.uiState.collectAsState()
+    LaunchedEffect(Unit){
+        viewModel.navigateIfHasLoggedInBefore(onNavigateToHome)
+    }
 
     var username by rememberSaveable { mutableStateOf(justSignedUpUsername) }
     var password by rememberSaveable { mutableStateOf("") }
