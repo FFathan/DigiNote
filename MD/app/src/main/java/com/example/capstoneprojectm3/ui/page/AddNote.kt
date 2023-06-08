@@ -45,55 +45,12 @@ fun AddNote(
     onNavigateToDetails: () -> Unit = {},
 ) {
     var title by rememberSaveable { mutableStateOf("") }
-    var isImageCaptured by rememberSaveable { mutableStateOf(false) }
-    var isPermissionGiven by rememberSaveable { mutableStateOf(false) }
-
-    var capturedBitmap by rememberSaveable { mutableStateOf<Bitmap?>(null) }
-    val context = LocalContext.current
-    val permissionState = rememberPermissionState(Manifest.permission.CAMERA)
-    val takePictureLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.TakePicture()
-    ) { result ->
-        if (result) {
-            // Handle the captured image
-            isImageCaptured = true
-            capturedBitmap = getLastImageBitmap(context)
-        } else {
-            // Handle failure or cancellation
-            capturedBitmap = null
-        }
-    }
-
-    val permissionLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        if (isGranted) {
-//            takePictureLauncher.launch(createOutputUri(context))
-            isPermissionGiven = true
-        } else {
-            // Handle permission denied
-        }
-    }
-
-    LaunchedEffect(Unit){
-        permissionLauncher.launch(permissionState.permission)
-    }
 
     Scaffold(
         topBar = { DetailsTopBar("Capture Note", showDelete = false, onNavigateToHome = { onNavigateToHome() }) },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {
-                    if(isPermissionGiven) {
-                        if (permissionState.hasPermission) {
-                            takePictureLauncher.launch(createOutputUri(context))
-                        } else {
-                            permissionLauncher.launch(permissionState.permission)
-                        }
-                    } else {
-
-                    }
-                },
+                onClick = {},
                 modifier = Modifier.padding(80.dp) ) {
                 Icon(painterResource(id = com.example.capstoneprojectm3.R.drawable.outline_photo_camera_24), "Capture note")
             }
@@ -113,100 +70,16 @@ fun AddNote(
                 )
                 Button(
                     onClick = {},
-                    enabled = isImageCaptured
                 ) {
                     Text("Create New Note")
                 }
-                if (capturedBitmap != null) {
-                    Image(
-                        bitmap = capturedBitmap!!.asImageBitmap(),
-                        contentDescription = "Captured Image",
-                        modifier = Modifier.fillMaxWidth().height(200.dp)
-                    )
-                }
-//                Image(
-//                    painter = painterResource(androidx.compose.foundation.layout.R.drawable.profile_image),
-//                    contentDescription = "captured image",
-//                    contentScale = ContentScale.Fit,
-//                    modifier = Modifier
-//                        .padding(16.dp)
-//                        .fillMaxWidth()
-//                        .height(360.dp)
-//                )
+
             }
         }
     )
 }
 
-@Composable
-fun rememberPermissionState(permission: String): PermissionState {
-    val permissionState = remember { PermissionState() }
 
-    LaunchedEffect(permission) {
-        permissionState.permission = permission
-    }
-
-    return permissionState
-}
-
-class PermissionState {
-    var permission: String by mutableStateOf("")
-    val hasPermission: Boolean
-        get() = permission.isNotEmpty()
-}
-
-@Composable
-fun requestPermissionLauncher(permission: String): ActivityResultLauncher<String> {
-    val launcher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        // Handle permission result
-    }
-
-    DisposableEffect(permission) {
-        launcher.launch(permission)
-        onDispose { }
-    }
-
-    return launcher
-}
-
-private const val AUTHORITY = "com.example.capstoneprojectm3"
-private fun createOutputUri(context: Context): Uri {
-    val imagesDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-    val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-    val fileName = "IMG_${timeStamp}.jpg"
-    val file = File(imagesDir, fileName)
-    return FileProvider.getUriForFile(context, AUTHORITY, file)
-}
-
-@SuppressLint("Range")
-private fun getLastImageBitmap(context: Context): Bitmap? {
-    val projection = arrayOf(MediaStore.Images.ImageColumns._ID)
-    val sortOrder = "${MediaStore.Images.ImageColumns._ID} DESC"
-
-    context.contentResolver.query(
-        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-        projection,
-        null,
-        null,
-        sortOrder
-    )?.use { cursor ->
-        if (cursor.moveToNext()) {
-            val imageUri = cursor.getLong(cursor.getColumnIndex(MediaStore.Images.ImageColumns._ID))
-            val imageUriWithPath = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, imageUri.toString())
-
-            return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
-                @Suppress("DEPRECATION")
-                MediaStore.Images.Media.getBitmap(context.contentResolver, imageUriWithPath)
-            } else {
-                val source = ImageDecoder.createSource(context.contentResolver, imageUriWithPath)
-                ImageDecoder.decodeBitmap(source)
-            }
-        }
-    }
-    return null
-}
 
 @Preview(
     name = "Add Note",
