@@ -1,6 +1,8 @@
 package com.example.capstoneprojectm3.ui.page.home
 
+import android.content.Context
 import android.content.res.Configuration
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
@@ -11,32 +13,43 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import com.example.capstoneprojectm3.ui.component.HomeTopBar
 import com.example.capstoneprojectm3.ui.component.NoteCard
 import com.example.capstoneprojectm3.ui.data.Note
 import com.example.capstoneprojectm3.ui.theme.CapstoneProjectM3Theme
 
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.capstoneprojectm3.DatastorePreferences
 import com.example.capstoneprojectm3.ViewModelFactory
 import com.example.capstoneprojectm3.di.Injection
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "login")
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Home(
-//    noteList: List<Note>,
     onNavigateToDetails: () -> Unit = {},
     onNavigateToAddNote: () -> Unit = {},
     viewModel: HomeViewModel = viewModel(
-        factory = ViewModelFactory(Injection.provideRepository())
+        factory = ViewModelFactory(Injection.provideRepository(),
+        DatastorePreferences.getInstance(LocalContext.current.dataStore))
     )
 ) {
-    if(!viewModel.isRepositoryAuthorized()) viewModel.authorizeRepository("auth-token")
+    LaunchedEffect(Unit){
+        if(!viewModel.isRepositoryAuthorized()) viewModel.authorizeRepository()
+    }
     viewModel.fetchNoteList()
+    Log.d("home", "")
     val uiState by viewModel.uiState.collectAsState()
     val noteList = uiState.noteList
 

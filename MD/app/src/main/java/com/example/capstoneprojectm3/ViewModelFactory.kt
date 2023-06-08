@@ -11,7 +11,7 @@ class ViewModelFactory(private val repository: NoteRepository, private val prefe
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            return HomeViewModel(repository) as T
+            return HomeViewModel(repository, preferences as DatastorePreferences) as T
         } else if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(repository, preferences as DatastorePreferences) as T
         }
