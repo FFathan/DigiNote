@@ -51,6 +51,7 @@ fun AddNote(
     onNavigateToDetails: () -> Unit = {},
 ) {
     var title by rememberSaveable { mutableStateOf("") }
+    var isImageCaptured by rememberSaveable { mutableStateOf(false) }
 
 
     val context = LocalContext.current
@@ -65,6 +66,7 @@ fun AddNote(
     val cameraLauncher =
         rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) {
             capturedImageUri = uri
+            isImageCaptured = true
         }
 
     val permissionLauncher = rememberLauncherForActivityResult(
@@ -81,19 +83,21 @@ fun AddNote(
     Scaffold(
         topBar = { DetailsTopBar("Capture Note", showDelete = false, onNavigateToHome = { onNavigateToHome() }) },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    val permissionCheckResult =
-                        ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
-                    if (permissionCheckResult == PackageManager.PERMISSION_GRANTED) {
-                        cameraLauncher.launch(uri)
-                    } else {
-                        // Request a permission
-                        permissionLauncher.launch(Manifest.permission.CAMERA)
-                    }
-                },
-                modifier = Modifier.padding(80.dp) ) {
-                Icon(painterResource(id = com.example.capstoneprojectm3.R.drawable.outline_photo_camera_24), "Capture note")
+            if(!isImageCaptured){
+                FloatingActionButton(
+                    onClick = {
+                        val permissionCheckResult =
+                            ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
+                        if (permissionCheckResult == PackageManager.PERMISSION_GRANTED) {
+                            cameraLauncher.launch(uri)
+                        } else {
+                            // Request a permission
+                            permissionLauncher.launch(Manifest.permission.CAMERA)
+                        }
+                    },
+                    modifier = Modifier.padding(80.dp) ) {
+                    Icon(painterResource(id = com.example.capstoneprojectm3.R.drawable.outline_photo_camera_24), "Capture note")
+                }
             }
         },
         floatingActionButtonPosition = FabPosition.Center,
