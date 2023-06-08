@@ -52,6 +52,7 @@ fun AddNote(
 ) {
     var title by rememberSaveable { mutableStateOf("") }
 
+
     val context = LocalContext.current
     val file = context.createImageFile()
     val uri = FileProvider.getUriForFile(
@@ -59,9 +60,7 @@ fun AddNote(
         BuildConfig.APPLICATION_ID + ".provider", file
     )
 
-    var capturedImageUri by remember {
-        mutableStateOf<Uri>(Uri.EMPTY)
-    }
+    var capturedImageUri by remember { mutableStateOf<Uri>(Uri.EMPTY) }
 
     val cameraLauncher =
         rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) {
@@ -70,8 +69,8 @@ fun AddNote(
 
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
-    ) {
-        if (it) {
+    ) { isPermissionAllowed ->
+        if (isPermissionAllowed) {
             Toast.makeText(context, "Permission Granted", Toast.LENGTH_SHORT).show()
             cameraLauncher.launch(uri)
         } else {
@@ -118,10 +117,9 @@ fun AddNote(
 
                 if (capturedImageUri.path?.isNotEmpty() == true) {
                     Image(
-                        modifier = Modifier
-                            .padding(16.dp, 8.dp),
+                        modifier = Modifier.padding(16.dp, 8.dp),
                         painter = rememberAsyncImagePainter(capturedImageUri),
-                        contentDescription = null
+                        contentDescription = "captured image"
                     )
                 }
             }
