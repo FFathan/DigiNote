@@ -32,7 +32,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.capstoneprojectm3"
+            android:authorities="com.example.capstoneprojectm3.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
