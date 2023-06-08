@@ -1,0 +1,23 @@
+package com.example.capstoneprojectm3.ui.page.login
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.capstoneprojectm3.DatastorePreferences
+import com.example.capstoneprojectm3.data.NoteRepository
+import com.example.capstoneprojectm3.ui.data.Note
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+
+class LoginViewModel(private val repository: NoteRepository, private val preferences: DatastorePreferences) : ViewModel() {
+    private val _uiState: MutableStateFlow<LoginUiState> =
+        MutableStateFlow(LoginUiState())
+    val uiState: StateFlow<LoginUiState>
+        get() = _uiState
+}
+
+data class LoginUiState (
+    val isLoading: Boolean = true,
+    val isSuccess: Boolean = false,
+    val isFailed: Boolean = false,
+)

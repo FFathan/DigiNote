@@ -1,5 +1,6 @@
-package com.example.capstoneprojectm3.ui.page
+package com.example.capstoneprojectm3.ui.page.login
 
+import android.content.Context
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,17 +12,31 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.capstoneprojectm3.DatastorePreferences
+import com.example.capstoneprojectm3.ViewModelFactory
+import com.example.capstoneprojectm3.di.Injection
 import com.example.capstoneprojectm3.ui.theme.CapstoneProjectM3Theme
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "login")
 
 @Composable
 fun Login(
     onNavigateToSignUp: () -> Unit = {},
     onNavigateToHome: () -> Unit = {},
-    justSignedUpUsername: String = ""
+    justSignedUpUsername: String = "",
+    viewModel: LoginViewModel = viewModel(
+        factory = ViewModelFactory(Injection.provideRepository(),
+            DatastorePreferences.getInstance(LocalContext.current.dataStore))
+    )
 ) {
     var username by rememberSaveable { mutableStateOf(justSignedUpUsername) }
     var password by rememberSaveable { mutableStateOf("") }
