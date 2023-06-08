@@ -38,6 +38,11 @@ fun Login(
             DatastorePreferences.getInstance(LocalContext.current.dataStore))
     )
 ) {
+    val uiState by viewModel.uiState.collectAsState()
+//    if(uiState.isLoggedIn) {
+//        onNavigateToHome()
+//    }
+
     var username by rememberSaveable { mutableStateOf(justSignedUpUsername) }
     var password by rememberSaveable { mutableStateOf("") }
 
@@ -63,7 +68,7 @@ fun Login(
             label = { Text("Password") },
             visualTransformation = PasswordVisualTransformation()
         )
-        Button(onClick = { onNavigateToHome() }) {
+        Button(onClick = { viewModel.login(username, password, onNavigateToHome) }) {
             Text("Login")
         }
         TextButton(onClick = { onNavigateToSignUp() }) {

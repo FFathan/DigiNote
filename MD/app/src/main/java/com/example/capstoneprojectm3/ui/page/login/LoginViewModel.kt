@@ -14,10 +14,33 @@ class LoginViewModel(private val repository: NoteRepository, private val prefere
         MutableStateFlow(LoginUiState())
     val uiState: StateFlow<LoginUiState>
         get() = _uiState
+
+    fun login(username: String, password: String, onNavigateToHome: () -> Unit) {
+        viewModelScope.launch {
+            val loginResponse = repository.mockLogin(username, password)
+            val isLoggedIn = !loginResponse.error
+            val authToken = loginResponse.authToken
+            if(isLoggedIn) {
+                preferences.setLoginStatus(true)
+                preferences.setAuthToken(authToken)
+
+//                _uiState.value = LoginUiState(
+//                    isLoading = false,
+//                    isSuccess = true,
+//                    isFailed = false,
+//                    isLoggedIn = true,
+//                    authToken = authToken
+//                )
+                onNavigateToHome()
+            }
+        }
+    }
 }
 
 data class LoginUiState (
     val isLoading: Boolean = true,
     val isSuccess: Boolean = false,
     val isFailed: Boolean = false,
+    val isLoggedIn: Boolean = false,
+    val authToken: String = ""
 )
