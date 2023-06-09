@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 class NoteRepository {
-    private var apiService: ApiService = ApiConfig.mockGetApiService()
+    private var apiService: ApiService = ApiConfig.getApiService()
     var isAuthorized: Boolean = false
     fun getDummyListNote(): Flow<List<Note>> {
         return flowOf(getHomeNoteListExample())
@@ -26,8 +26,12 @@ class NoteRepository {
         return apiService.login(username, password)
     }
 
+    suspend fun login(username: String, password: String): LoginResponse {
+        return apiService.login(username, password)
+    }
+
     suspend fun mockGetAllNotes(authToken: String, page: Int, size: Int): Flow<List<Note>> {
-        return flowOf(apiService.getAllNotes(authToken, page, size).noteList)
+        return flowOf(ApiConfig.mockGetApiService().getAllNotes(authToken, page, size).noteList)
     }
 
     companion object {

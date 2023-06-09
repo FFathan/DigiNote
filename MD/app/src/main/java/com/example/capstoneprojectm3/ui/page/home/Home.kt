@@ -46,7 +46,7 @@ fun Home(
     )
 ) {
     LaunchedEffect(Unit){
-        if(!viewModel.isRepositoryAuthorized()) viewModel.authorizeRepository()
+//        if(!viewModel.isRepositoryAuthorized()) viewModel.authorizeRepository()
     }
     viewModel.fetchNoteList()
     Log.d("home", "")

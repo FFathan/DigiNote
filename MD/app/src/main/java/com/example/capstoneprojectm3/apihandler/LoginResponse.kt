@@ -16,6 +16,6 @@ data class LoginResponse(
     @field:SerializedName("message")
     val message: String,
 
-    @field:SerializedName("authToken")
+    @field:SerializedName("token")
     val authToken: String
 )

@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiConfig {
     companion object{
-        private const val BASE_URL : String = "https://story-api.dicoding.dev/v1/"
+        private const val BASE_URL : String = "https://backend1-dot-testing-diginote-2023.et.r.appspot.com/"
         fun getApiService(): ApiService {
             val loggingInterceptor = getLoggingInterceptor()
 

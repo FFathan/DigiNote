@@ -9,6 +9,7 @@ import com.example.capstoneprojectm3.ui.data.Note
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class LoginViewModel(private val repository: NoteRepository, private val preferences: DatastorePreferences) : ViewModel() {
 //    private val _uiState: MutableStateFlow<LoginUiState> =
@@ -18,13 +19,18 @@ class LoginViewModel(private val repository: NoteRepository, private val prefere
 
     fun login(username: String, password: String, onNavigateToHome: () -> Unit) {
         viewModelScope.launch {
-            val loginResponse = repository.mockLogin(username, password)
-            val isLoggedIn = !loginResponse.error
-            val authToken = loginResponse.authToken
-            if(isLoggedIn) {
-                preferences.setLoginStatus(true)
-                preferences.setAuthToken(authToken)
-                onNavigateToHome()
+//            val loginResponse = repository.mockLogin(username, password)
+            try {
+                val loginResponse = repository.login(username, password)
+                val isLoggedIn = !loginResponse.error
+                val authToken = loginResponse.authToken
+                if(isLoggedIn) {
+                    preferences.setLoginStatus(true)
+                    preferences.setAuthToken(authToken)
+                    onNavigateToHome()
+                }
+            } catch (e: HttpException) {
+
             }
         }
     }
