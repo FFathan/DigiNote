@@ -40,6 +40,7 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 fun Home(
     onNavigateToDetails: () -> Unit = {},
     onNavigateToAddNote: () -> Unit = {},
+    onNavigateToLogin: () -> Unit = {},
     viewModel: HomeViewModel = viewModel(
         factory = ViewModelFactory(Injection.provideRepository(),
         DatastorePreferences.getInstance(LocalContext.current.dataStore))
@@ -54,7 +55,7 @@ fun Home(
     val noteList = uiState.noteList
 
     Scaffold(
-        topBar = { HomeTopBar() },
+        topBar = { HomeTopBar(onLogout = onNavigateToLogin) },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { onNavigateToAddNote() },

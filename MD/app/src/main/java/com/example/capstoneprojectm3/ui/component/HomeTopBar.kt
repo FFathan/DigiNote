@@ -8,9 +8,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.painterResource
+import com.example.capstoneprojectm3.R
 
 @Composable
-fun HomeTopBar() {
+fun HomeTopBar(onLogout: () -> Unit = {}) {
     CenterAlignedTopAppBar(
         title = {
             Text(
@@ -18,11 +20,10 @@ fun HomeTopBar() {
             )
         },
         navigationIcon = {
-            IconButton(onClick = { /* doSomething() */ }) {
+            IconButton(onClick = { onLogout() }) {
                 Icon(
-                    imageVector = Icons.Filled.Menu,
-                    contentDescription = "Open menu"
-                )
+                    painterResource(id = R.drawable.baseline_logout_24),
+                    contentDescription = "logout")
             }
         },
         actions = {

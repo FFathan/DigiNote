@@ -52,7 +52,9 @@ fun MainNavHost(
         }
         composable(Screen.Home.route) {
             Home(
-//                getHomeNoteListExample(),
+                onNavigateToLogin = { navController.navigate(Screen.Login.route) {
+                    popUpTo(Screen.Home.route) { inclusive = true }
+                } },
                 onNavigateToDetails = { navController.navigate(Screen.Details.route) },
                 onNavigateToAddNote = { navController.navigate(Screen.AddNote.route) }
             )
