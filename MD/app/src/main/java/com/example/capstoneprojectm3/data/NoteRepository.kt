@@ -18,15 +18,19 @@ class NoteRepository {
         isAuthorized = true
     }
 
+    suspend fun login(username: String, password: String): LoginResponse {
+        return apiService.login(username, password)
+    }
+
+    suspend fun signUp(username: String, email: String, password: String): RegisterResponse {
+        return apiService.register(username, email, password)
+    }
+
     suspend fun mockSignUp(username: String, email: String, password: String): RegisterResponse {
         return apiService.register(username, email, password)
     }
 
     suspend fun mockLogin(username: String, password: String): LoginResponse {
-        return apiService.login(username, password)
-    }
-
-    suspend fun login(username: String, password: String): LoginResponse {
         return apiService.login(username, password)
     }
 

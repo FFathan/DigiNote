@@ -9,6 +9,7 @@ import com.example.capstoneprojectm3.DatastorePreferences
 import com.example.capstoneprojectm3.data.NoteRepository
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import com.example.capstoneprojectm3.utils.extractMessageFromJson
 
 class LoginViewModel(private val repository: NoteRepository, private val preferences: DatastorePreferences) : ViewModel() {
 //    private val _uiState: MutableStateFlow<LoginUiState> =
@@ -40,20 +41,6 @@ class LoginViewModel(private val repository: NoteRepository, private val prefere
                 if(isLoggedIn) onNavigateToHome()
             }
         }
-    }
-
-    private fun String.extractMessageFromJson(): String {
-        val keyValuePairs = this.trim().removePrefix("{").removeSuffix("}").split(",")
-        val jsonObject = mutableMapOf<String, String>()
-
-        for (pair in keyValuePairs) {
-            val (key, value) = pair.split(":")
-            val cleanedKey = key.trim().removeSurrounding("\"")
-            val cleanedValue = value.trim().removeSurrounding("\"")
-            jsonObject[cleanedKey] = cleanedValue
-        }
-
-        return jsonObject["message"] ?: ""
     }
 }
 

@@ -37,6 +37,7 @@ fun SignUp(
             DatastorePreferences.getInstance(LocalContext.current.dataStore))
     )
 ) {
+    val context = LocalContext.current
     var username by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
@@ -75,7 +76,7 @@ fun SignUp(
             label = { Text("Confirm Password") },
             visualTransformation = PasswordVisualTransformation()
         )
-        Button(onClick = { viewModel.signUp(username, email, password, onNavigateToLogin) }) {
+        Button(onClick = { viewModel.signUp(username, email, password, context, onNavigateToLogin) }) {
             Text("Sign Up")
         }
         TextButton(onClick = { onNavigateToLogin("") }) {
