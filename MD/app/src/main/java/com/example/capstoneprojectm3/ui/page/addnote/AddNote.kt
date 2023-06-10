@@ -1,54 +1,53 @@
-package com.example.capstoneprojectm3.ui.page
+package com.example.capstoneprojectm3.ui.page.addnote
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.res.Configuration
-import android.graphics.Bitmap
-import android.graphics.ImageDecoder
 import android.net.Uri
-import android.os.Build
-import android.os.Environment
-import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
-import androidx.compose.material3.R
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
 import com.example.capstoneprojectm3.BuildConfig
+import com.example.capstoneprojectm3.DatastorePreferences
+import com.example.capstoneprojectm3.ViewModelFactory
+import com.example.capstoneprojectm3.di.Injection
 import com.example.capstoneprojectm3.ui.component.DetailsTopBar
 import com.example.capstoneprojectm3.ui.theme.CapstoneProjectM3Theme
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "login")
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddNote(
     onNavigateToHome: () -> Unit = {},
     onNavigateToDetails: () -> Unit = {},
+    viewModel: AddNoteViewModel = viewModel(
+        factory = ViewModelFactory(
+            Injection.provideRepository(),
+            DatastorePreferences.getInstance(LocalContext.current.dataStore))
+    )
 ) {
     var title by rememberSaveable { mutableStateOf("") }
     var isImageCaptured by rememberSaveable { mutableStateOf(false) }
@@ -111,10 +110,14 @@ fun AddNote(
                 OutlinedTextField(
                     value = title,
                     onValueChange = { title = it},
-                    label = { Text("Add Note Title") }
+                    label = { Text("Add Note Title") },
+                    singleLine = true
                 )
                 Button(
-                    onClick = {},
+                    onClick = {
+                        viewModel.addNote(context, onNavigateToDetails)
+                    },
+                    enabled = title.isNotEmpty() && isImageCaptured
                 ) {
                     Text("Create New Note")
                 }

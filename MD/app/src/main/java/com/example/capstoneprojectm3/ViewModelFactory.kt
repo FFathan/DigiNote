@@ -3,6 +3,7 @@ package com.example.capstoneprojectm3
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.capstoneprojectm3.data.NoteRepository
+import com.example.capstoneprojectm3.ui.page.addnote.AddNoteViewModel
 import com.example.capstoneprojectm3.ui.page.home.HomeViewModel
 import com.example.capstoneprojectm3.ui.page.login.LoginViewModel
 import com.example.capstoneprojectm3.ui.page.signup.SignUpViewModel
@@ -17,6 +18,8 @@ class ViewModelFactory(private val repository: NoteRepository, private val prefe
             return LoginViewModel(repository, preferences) as T
         } else if (modelClass.isAssignableFrom(SignUpViewModel::class.java)) {
             return SignUpViewModel(repository, preferences) as T
+        } else if (modelClass.isAssignableFrom(AddNoteViewModel::class.java)) {
+            return AddNoteViewModel(repository, preferences) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

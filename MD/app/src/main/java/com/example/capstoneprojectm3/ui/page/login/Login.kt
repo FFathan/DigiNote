@@ -61,13 +61,15 @@ fun Login(
         OutlinedTextField(
             value = username,
             onValueChange = { username = it},
-            label = { Text("Username or Email") }
+            label = { Text("Username or Email") },
+            singleLine = true
         )
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") },
-            visualTransformation = PasswordVisualTransformation()
+            visualTransformation = PasswordVisualTransformation(),
+            singleLine = true
         )
         Button(onClick = { viewModel.login(username, password, context, onNavigateToHome) }) {
             Text("Login")

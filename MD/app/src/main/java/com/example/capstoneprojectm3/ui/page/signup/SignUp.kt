@@ -57,24 +57,28 @@ fun SignUp(
         OutlinedTextField(
             value = username,
             onValueChange = { username = it},
-            label = { Text("Username") }
+            label = { Text("Username") },
+            singleLine = true
         )
         OutlinedTextField(
             value = email,
             onValueChange = { email = it},
-            label = { Text("Email") }
+            label = { Text("Email") },
+            singleLine = true
         )
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") },
-            visualTransformation = PasswordVisualTransformation()
+            visualTransformation = PasswordVisualTransformation(),
+            singleLine = true
         )
         OutlinedTextField(
             value = confirmPassword,
             onValueChange = { confirmPassword = it },
             label = { Text("Confirm Password") },
-            visualTransformation = PasswordVisualTransformation()
+            visualTransformation = PasswordVisualTransformation(),
+            singleLine = true
         )
         Button(onClick = { viewModel.signUp(username, email, password, context, onNavigateToLogin) }) {
             Text("Sign Up")
