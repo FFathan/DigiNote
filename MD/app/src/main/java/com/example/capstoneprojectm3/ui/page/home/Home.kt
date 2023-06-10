@@ -55,7 +55,7 @@ fun Home(
     val noteList = uiState.noteList
 
     Scaffold(
-        topBar = { HomeTopBar(onLogout = onNavigateToLogin) },
+        topBar = { HomeTopBar(onLogout = { viewModel.logout(onNavigateToLogin) }) },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { onNavigateToAddNote() },
