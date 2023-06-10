@@ -63,9 +63,11 @@ fun AddNote(
     var capturedImageUri by remember { mutableStateOf<Uri>(Uri.EMPTY) }
 
     val cameraLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) {
-            capturedImageUri = uri
-            isImageCaptured = true
+        rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
+            if(isSuccess) {
+                capturedImageUri = uri
+                isImageCaptured = true
+            }
         }
 
     val permissionLauncher = rememberLauncherForActivityResult(
