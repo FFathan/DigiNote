@@ -2,6 +2,7 @@ package com.example.capstoneprojectm3.ui.page.login
 
 import android.content.Context
 import android.content.res.Configuration
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -42,9 +43,9 @@ fun Login(
     LaunchedEffect(Unit){
 //        viewModel.navigateIfHasLoggedInBefore(onNavigateToHome)
     }
-
     var username by rememberSaveable { mutableStateOf(justSignedUpUsername) }
     var password by rememberSaveable { mutableStateOf("") }
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -68,7 +69,7 @@ fun Login(
             label = { Text("Password") },
             visualTransformation = PasswordVisualTransformation()
         )
-        Button(onClick = { viewModel.login(username, password, onNavigateToHome) }) {
+        Button(onClick = { viewModel.login(username, password, context, onNavigateToHome) }) {
             Text("Login")
         }
         TextButton(onClick = { onNavigateToSignUp() }) {
