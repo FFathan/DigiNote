@@ -7,7 +7,6 @@ import com.example.capstoneprojectm3.data.NoteRepository
 import com.example.capstoneprojectm3.ui.data.Note
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: NoteRepository, private val preferences: DatastorePreferences) : ViewModel() {
@@ -15,6 +14,7 @@ class HomeViewModel(private val repository: NoteRepository, private val preferen
         MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState>
         get() = _uiState
+
 
     fun isRepositoryAuthorized(): Boolean {
         return repository.isAuthorized
@@ -38,6 +38,13 @@ class HomeViewModel(private val repository: NoteRepository, private val preferen
                             noteList = noteList)
                     }
             }
+        }
+    }
+
+    fun logout(onNavigateToLogin: () -> Unit) {
+        viewModelScope.launch {
+            preferences.setLoginStatus(false)
+            onNavigateToLogin()
         }
     }
 }

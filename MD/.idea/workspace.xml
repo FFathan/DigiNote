@@ -9,9 +9,18 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Implemented ViewModel for AddNote.&#10;Implemented AddNote Button.&#10;Implemented singleLine = true for every OutlinedTextField">
+    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Fixing bug on AddNote, that makes user can cancel on taking picture to make isImageCaptured true, by adding if(isSuccess) condition">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/component/HomeTopBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/component/HomeTopBar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/home/Home.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/home/Home.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/home/HomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/home/HomeViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/login/Login.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/login/Login.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -660,7 +669,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686402634658</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Adding Logout dialog on Home">
+      <created>1686403624431</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1686403624431</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Fixing bug on AddNote, that makes user can cancel on taking picture to make isImageCaptured true, by adding if(isSuccess) condition">
+      <created>1686404117448</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1686404117448</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -690,8 +713,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Implementing Sign Up Page UI" />
-    <MESSAGE value="Implementing Details Page and Add Note Page UI" />
     <MESSAGE value="Implementing navigations between pages. But, DetailsTopBar.kt onNavigateToHome still doesn't work" />
     <MESSAGE value="committing .gitignore" />
     <MESSAGE value="changing vcs.xml, deleting New Text Document" />
@@ -715,6 +736,8 @@
     <MESSAGE value="Working CC API integration on Sign Up" />
     <MESSAGE value="Implemented CC API integration on Sign Up.&#10;Implemented Logout button on Home (without confirmation)" />
     <MESSAGE value="Implemented ViewModel for AddNote.&#10;Implemented AddNote Button.&#10;Implemented singleLine = true for every OutlinedTextField" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented ViewModel for AddNote.&#10;Implemented AddNote Button.&#10;Implemented singleLine = true for every OutlinedTextField" />
+    <MESSAGE value="Adding Logout dialog on Home" />
+    <MESSAGE value="Fixing bug on AddNote, that makes user can cancel on taking picture to make isImageCaptured true, by adding if(isSuccess) condition" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing bug on AddNote, that makes user can cancel on taking picture to make isImageCaptured true, by adding if(isSuccess) condition" />
   </component>
 </project>
