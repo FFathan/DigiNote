@@ -46,11 +46,14 @@ fun Home(
         DatastorePreferences.getInstance(LocalContext.current.dataStore))
     )
 ) {
+    Log.d("home", "")
+
     LaunchedEffect(Unit){
 //        if(!viewModel.isRepositoryAuthorized()) viewModel.authorizeRepository()
+        if(viewModel.isHomeRequireUpdate()) viewModel.fetchNoteList()
+        viewModel.refreshState()
     }
-    viewModel.fetchNoteList()
-    Log.d("home", "")
+
     val uiState by viewModel.uiState.collectAsState()
     val noteList = uiState.noteList
 

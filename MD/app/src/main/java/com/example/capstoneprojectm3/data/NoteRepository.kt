@@ -9,9 +9,8 @@ import kotlinx.coroutines.flow.flowOf
 class NoteRepository {
     private var apiService: ApiService = ApiConfig.getApiService()
     var isAuthorized: Boolean = false
-    fun getDummyListNote(): Flow<List<Note>> {
-        return flowOf(getHomeNoteListExample())
-    }
+    var isHomeRequireUpdate: Boolean = true
+    var homeNoteList = flowOf(listOf<Note>())
 
     fun authorizeApiService(authToken: String) {
         apiService = ApiConfig.mockGetApiService(authToken)
@@ -34,8 +33,10 @@ class NoteRepository {
         return apiService.login(username, password)
     }
 
-    suspend fun mockGetAllNotes(authToken: String, page: Int, size: Int): Flow<List<Note>> {
-        return flowOf(ApiConfig.mockGetApiService().getAllNotes(authToken, page, size).noteList)
+    suspend fun mockGetAllNotes(authToken: String, page: Int, size: Int) {
+        homeNoteList = flowOf(ApiConfig.mockGetApiService().getAllNotes(authToken, page, size).noteList)
+        isHomeRequireUpdate = false
+//        return flowOf(ApiConfig.mockGetApiService().getAllNotes(authToken, page, size).noteList)
     }
 
     companion object {
@@ -49,21 +50,4 @@ class NoteRepository {
                 }
             }
     }
-}
-
-fun getHomeNoteListExample(): List<Note> {
-    val title = "Note Title"
-    val date = "DD/MM/YYYY 12:34:56"
-    val description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-    val listNoteExample = mutableListOf<Note>()
-    for (id in 1..100) {
-        val note = Note(
-            id,
-            "$title $id",
-            date,
-            description
-        )
-        listNoteExample.add(note)
-    }
-    return listNoteExample
 }

@@ -1,5 +1,6 @@
 package com.example.capstoneprojectm3.ui.page.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.capstoneprojectm3.DatastorePreferences
@@ -7,6 +8,7 @@ import com.example.capstoneprojectm3.data.NoteRepository
 import com.example.capstoneprojectm3.ui.data.Note
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: NoteRepository, private val preferences: DatastorePreferences) : ViewModel() {
@@ -15,6 +17,9 @@ class HomeViewModel(private val repository: NoteRepository, private val preferen
     val uiState: StateFlow<HomeUiState>
         get() = _uiState
 
+    init{
+        Log.d("HomeViewModel", "")
+    }
 
     fun isRepositoryAuthorized(): Boolean {
         return repository.isAuthorized
@@ -27,17 +32,25 @@ class HomeViewModel(private val repository: NoteRepository, private val preferen
         }
     }
 
+    fun isHomeRequireUpdate(): Boolean{
+        return repository.isHomeRequireUpdate
+    }
+
     fun fetchNoteList() {
         viewModelScope.launch {
             preferences.getAuthToken().collect{ authToken ->
                 repository.mockGetAllNotes(authToken, 1, 1)
-                    .collect { noteList ->
-                        _uiState.value = HomeUiState(
-                            isLoading = false,
-                            isSuccess = true,
-                            noteList = noteList)
-                    }
             }
+        }
+    }
+
+    suspend fun refreshState(){
+        repository.homeNoteList.collect{ homeNoteList ->
+            _uiState.value = HomeUiState(
+                isLoading = false,
+                isSuccess = true,
+                noteList = homeNoteList
+            )
         }
     }
 
