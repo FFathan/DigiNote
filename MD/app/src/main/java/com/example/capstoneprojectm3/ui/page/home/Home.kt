@@ -25,7 +25,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.capstoneprojectm3.ui.component.HomeTopBar
 import com.example.capstoneprojectm3.ui.component.NoteCard
-import com.example.capstoneprojectm3.ui.data.Note
 import com.example.capstoneprojectm3.ui.theme.CapstoneProjectM3Theme
 
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -38,7 +37,7 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Home(
-    onNavigateToDetails: () -> Unit = {},
+    onNavigateToDetails: (noteId: String) -> Unit = {},
     onNavigateToAddNote: () -> Unit = {},
     onNavigateToLogin: () -> Unit = {},
     viewModel: HomeViewModel = viewModel(
@@ -81,7 +80,7 @@ fun Home(
                             note.title,
                             note.date,
                             note.description,
-                            modifier = Modifier.clickable(onClick = { onNavigateToDetails() })
+                            modifier = Modifier.clickable(onClick = { onNavigateToDetails(note.noteId) })
                         )
                     }
                 }
@@ -100,25 +99,7 @@ fun Home(
 @Composable
 fun HomePreview() {
     CapstoneProjectM3Theme {
-        Surface(
-//            modifier = Modifier
-//                .width(360.dp)
-//                .height(640.dp),
-//            color = MaterialTheme.colorScheme.background
-        ) {
-            val title = "Note Title"
-            val date = "DD/MM/YYYY 12:34:56"
-            val description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-            val listNoteExample = mutableListOf<Note>()
-            for (id in 1..100) {
-                val note = Note(
-                    id,
-                    "$title $id",
-                    date,
-                    description
-                )
-                listNoteExample.add(note)
-            }
+        Surface {
 //            Home(listNoteExample)
         }
     }

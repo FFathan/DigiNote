@@ -62,13 +62,15 @@ class MockApiService : ApiService {
         val title = "Note Title"
         val date = "DD/MM/YYYY 12:34:56"
         val description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-        val endIndex = Random.nextInt(60, 100)
-        val descriptionVariation = description.substring(0, endIndex)
+
 
         val listNoteExample = mutableListOf<Note>()
         for (id in 1..100) {
+            val endIndex = Random.nextInt(60, 100)
+            val descriptionVariation = description.substring(0, endIndex)
+
             val note = Note(
-                id,
+                id.toString(),
                 "$title $id",
                 date,
                 descriptionVariation

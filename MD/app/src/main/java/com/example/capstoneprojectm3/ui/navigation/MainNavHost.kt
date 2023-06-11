@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -56,13 +57,18 @@ fun MainNavHost(
                 onNavigateToLogin = { navController.navigate(Screen.Login.route) {
                     popUpTo(Screen.Home.route) { inclusive = true }
                 } },
-                onNavigateToDetails = { navController.navigate(Screen.Details.route) },
+                onNavigateToDetails = { noteId ->
+                    navController.navigate(Screen.Details.with(noteId))
+                },
                 onNavigateToAddNote = { navController.navigate(Screen.AddNote.route) }
             )
         }
-        composable(Screen.Details.route) {
+        composable(
+            Screen.Details.route,
+            arguments = listOf(navArgument("noteId") { type = NavType.StringType })
+        ) { backStackEntry ->
             Details(
-                getDetailsNoteExample(),
+                backStackEntry.arguments?.getString("noteId") as String,
                 onNavigateToHome = { navController.navigate(Screen.Home.route) {
                     popUpTo(Screen.Home.route) { inclusive = true}
                 } },
@@ -82,20 +88,6 @@ fun MainNavHost(
             )
         }
     }
-}
-
-fun getDetailsNoteExample(): Note {
-    val noteId = 1
-    val title = "Note Title 1"
-    val date = "DD/MM/YYYY 12:34:56"
-    val description =
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-    return Note(
-        noteId,
-        title,
-        date,
-        description
-    )
 }
 
 @Preview(

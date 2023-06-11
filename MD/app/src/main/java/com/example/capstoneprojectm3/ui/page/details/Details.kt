@@ -30,7 +30,7 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Details(
-    note: Note,
+    noteId: String,
     onNavigateToHome: () -> Unit = {},
     onDeleteNote: () -> Unit = {},
     viewModel: DetailsViewModel = viewModel(
@@ -40,6 +40,12 @@ fun Details(
     )
 ) {
     var selectedTabIndex by rememberSaveable { mutableStateOf(0) }
+    LaunchedEffect(Unit){
+//        if(!viewModel.isRepositoryAuthorized()) viewModel.authorizeRepository()
+        viewModel.refreshState(noteId)
+    }
+    val uiState by viewModel.uiState.collectAsState()
+    val note = uiState.noteDetails
 
     Scaffold(
         topBar = { DetailsTopBar(
@@ -95,7 +101,7 @@ fun Details(
 fun DetailsPreview() {
     CapstoneProjectM3Theme {
         Surface {
-            val noteId = 1
+            val noteId = "1"
             val title = "Note Title 1"
             val date = "DD/MM/YYYY 12:34:56"
             val description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
@@ -105,7 +111,7 @@ fun DetailsPreview() {
                 date,
                 description
             )
-            Details(noteExample)
+//            Details(noteExample)
         }
     }
 }
