@@ -16,14 +16,12 @@ class DetailsViewModel(private val repository: NoteRepository, private val prefe
     val uiState: StateFlow<DetailsUiState>
         get() = _uiState
 
-    suspend fun refreshState(noteId: String){
-        repository.homeNoteList.collect{ homeNoteList ->
-            _uiState.value = DetailsUiState(
-                isLoading = false,
-                isSuccess = true,
-                noteDetails = homeNoteList.find{ it.noteId == noteId} ?: Note()
-            )
-        }
+    fun refreshState(noteId: String){
+        _uiState.value = DetailsUiState(
+            isLoading = false,
+            isSuccess = true,
+            noteDetails = repository.homeNoteList.find{ it.noteId == noteId} ?: Note()
+        )
     }
 
     fun deleteNote(noteId: String, onNavigateToHome: () -> Unit) {

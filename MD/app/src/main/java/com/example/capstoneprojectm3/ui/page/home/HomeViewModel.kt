@@ -44,14 +44,12 @@ class HomeViewModel(private val repository: NoteRepository, private val preferen
         }
     }
 
-    suspend fun refreshState(){
-        repository.homeNoteList.collect{ homeNoteList ->
-            _uiState.value = HomeUiState(
-                isLoading = false,
-                isSuccess = true,
-                noteList = homeNoteList
-            )
-        }
+    fun refreshState(){
+        _uiState.value = HomeUiState(
+            isLoading = false,
+            isSuccess = true,
+            noteList = repository.homeNoteList
+        )
     }
 
     fun logout(onNavigateToLogin: () -> Unit) {

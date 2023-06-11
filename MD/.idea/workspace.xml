@@ -9,11 +9,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Implemented delete note confirmation dialog">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Fixing delete note confirmation dialog.&#10;Implementing Delete Note feature.">
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/data/NoteRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/data/NoteRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/Details.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/Details.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/DetailsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/DetailsViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/home/HomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/home/HomeViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -718,7 +716,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686488309621</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Fixing delete note confirmation dialog.&#10;Implementing Delete Note feature.">
+      <created>1686490294195</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1686490294195</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -748,7 +753,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Making Repository, Injection, and connecting it to the ViewModel" />
     <MESSAGE value="Adding ApiConfig, ApiService, and its Responses" />
     <MESSAGE value="Changing ApiService functions to suspend, Adding ApiConfig and ApiService mocks" />
     <MESSAGE value="Changing HomeViewModel fetchNoteList() to use newly added repository.mockGetAllNotes()" />
@@ -773,6 +777,7 @@
     <MESSAGE value="Implemented DetailsViewModel" />
     <MESSAGE value="Implemented moving ID from Home -&gt; Details and showing the corresponding details of selected Home note" />
     <MESSAGE value="Implemented delete note confirmation dialog" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented delete note confirmation dialog" />
+    <MESSAGE value="Fixing delete note confirmation dialog.&#10;Implementing Delete Note feature." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing delete note confirmation dialog.&#10;Implementing Delete Note feature." />
   </component>
 </project>

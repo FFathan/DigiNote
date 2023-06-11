@@ -1,20 +1,15 @@
 package com.example.capstoneprojectm3.data
 
 import com.example.capstoneprojectm3.apihandler.*
-import com.example.capstoneprojectm3.apihandler.mock.MockApiService
 import com.example.capstoneprojectm3.ui.data.Note
 import com.example.capstoneprojectm3.utils.extractMessageFromJson
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.toList
 import retrofit2.HttpException
 
 class NoteRepository {
     private var apiService: ApiService = ApiConfig.getApiService()
     var isAuthorized: Boolean = false
     var isHomeRequireUpdate: Boolean = true
-    var homeNoteList = flowOf(listOf<Note>())
+    var homeNoteList = listOf<Note>()
 
     fun authorizeApiService(authToken: String) {
         apiService = ApiConfig.mockGetApiService(authToken)
@@ -38,9 +33,8 @@ class NoteRepository {
     }
 
     suspend fun mockGetAllNotes(authToken: String, page: Int, size: Int) {
-        homeNoteList = flowOf(ApiConfig.mockGetApiService().getAllNotes(authToken, page, size).noteList)
+        homeNoteList = ApiConfig.mockGetApiService().getAllNotes(authToken, page, size).noteList
         isHomeRequireUpdate = false
-//        return flowOf(ApiConfig.mockGetApiService().getAllNotes(authToken, page, size).noteList)
     }
 
     suspend fun mockDeleteNote(authToken: String, noteId: String): DeleteNoteResponse {
@@ -58,9 +52,7 @@ class NoteRepository {
     }
 
     private fun deleteLocalHomeNoteById(noteId: String) {
-        homeNoteList = homeNoteList.map { noteList ->
-            noteList.filter { it.noteId != noteId }
-        }
+        homeNoteList = homeNoteList.filter { it.noteId != noteId }
     }
 
     companion object {
