@@ -12,8 +12,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.capstoneprojectm3.ui.data.Note
-import com.example.capstoneprojectm3.ui.page.*
 import com.example.capstoneprojectm3.ui.page.addnote.AddNote
+import com.example.capstoneprojectm3.ui.page.details.Details
 import com.example.capstoneprojectm3.ui.page.home.Home
 import com.example.capstoneprojectm3.ui.page.login.Login
 import com.example.capstoneprojectm3.ui.page.signup.SignUp

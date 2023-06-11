@@ -1,5 +1,6 @@
-package com.example.capstoneprojectm3.ui.page
+package com.example.capstoneprojectm3.ui.page.details
 
+import android.content.Context
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -9,21 +10,35 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.capstoneprojectm3.DatastorePreferences
+import com.example.capstoneprojectm3.ViewModelFactory
+import com.example.capstoneprojectm3.di.Injection
 import com.example.capstoneprojectm3.ui.component.DetailsTopBar
-import com.example.capstoneprojectm3.ui.component.HomeTopBar
 import com.example.capstoneprojectm3.ui.data.Note
 import com.example.capstoneprojectm3.ui.theme.CapstoneProjectM3Theme
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "login")
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Details(
     note: Note,
     onNavigateToHome: () -> Unit = {},
-    onDeleteNote: () -> Unit = {}) {
+    onDeleteNote: () -> Unit = {},
+    viewModel: DetailsViewModel = viewModel(
+        factory = ViewModelFactory(
+            Injection.provideRepository(),
+            DatastorePreferences.getInstance(LocalContext.current.dataStore))
+    )
+) {
     var selectedTabIndex by rememberSaveable { mutableStateOf(0) }
 
     Scaffold(
