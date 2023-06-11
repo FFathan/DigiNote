@@ -51,7 +51,7 @@ fun Details(
             note.title,
             showDelete = true,
             onNavigateToHome = { onNavigateToHome() },
-            onDeleteNote = { viewModel.deleteNote(onNavigateToHome) }
+            onDeleteNote = { viewModel.deleteNote(note.noteId, onNavigateToHome) }
         ) } ) { innerPadding ->
 
         Column( modifier = Modifier.padding(innerPadding) ) {

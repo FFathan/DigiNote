@@ -8,8 +8,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.res.painterResource
-import com.example.capstoneprojectm3.R
 
 @Composable
 fun DetailsTopBar(
@@ -35,7 +33,7 @@ fun DetailsTopBar(
         },
         actions = {
             if(showDelete) {
-                IconButton(onClick = { onDeleteNote() }) {
+                IconButton(onClick = { isDeletingNote = true }) {
                     Icon(
                         imageVector = Icons.Filled.Delete,
                         contentDescription = "Delete note"

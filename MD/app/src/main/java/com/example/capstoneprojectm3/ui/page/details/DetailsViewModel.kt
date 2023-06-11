@@ -26,9 +26,12 @@ class DetailsViewModel(private val repository: NoteRepository, private val prefe
         }
     }
 
-    fun deleteNote(onNavigateToHome: () -> Unit) {
+    fun deleteNote(noteId: String, onNavigateToHome: () -> Unit) {
         viewModelScope.launch {
-            onNavigateToHome()
+            preferences.getAuthToken().collect { authToken ->
+                repository.mockDeleteNote(authToken, noteId)
+                onNavigateToHome()
+            }
         }
     }
 }

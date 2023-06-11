@@ -9,21 +9,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Implemented DetailsViewModel">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Implemented delete note confirmation dialog">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/mock/MockApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/mock/MockApiService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/data/Note.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/data/Note.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/navigation/MainNavHost.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/navigation/MainNavHost.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/navigation/Screen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/navigation/Screen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/data/NoteRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/data/NoteRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/Details.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/Details.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/DetailsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/DetailsViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/home/Home.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/home/Home.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -714,7 +704,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686485165613</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Implemented moving ID from Home -&gt; Details and showing the corresponding details of selected Home note">
+      <created>1686487698851</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1686487698851</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Implemented delete note confirmation dialog">
+      <created>1686488309621</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1686488309621</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -744,8 +748,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="working Details onNavigateToHome and onDeleteNote" />
-    <MESSAGE value="Adding ViewModel to the Home Screen" />
     <MESSAGE value="Making Repository, Injection, and connecting it to the ViewModel" />
     <MESSAGE value="Adding ApiConfig, ApiService, and its Responses" />
     <MESSAGE value="Changing ApiService functions to suspend, Adding ApiConfig and ApiService mocks" />
@@ -769,6 +771,8 @@
     <MESSAGE value="Setting preferences login status to false when user logged out.&#10;Navigate user to Home when preferences login status is true." />
     <MESSAGE value="Implemented saving fetched homeNoteList on repository." />
     <MESSAGE value="Implemented DetailsViewModel" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented DetailsViewModel" />
+    <MESSAGE value="Implemented moving ID from Home -&gt; Details and showing the corresponding details of selected Home note" />
+    <MESSAGE value="Implemented delete note confirmation dialog" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented delete note confirmation dialog" />
   </component>
 </project>
