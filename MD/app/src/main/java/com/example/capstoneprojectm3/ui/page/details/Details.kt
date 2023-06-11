@@ -41,7 +41,6 @@ fun Details(
 ) {
     var selectedTabIndex by rememberSaveable { mutableStateOf(0) }
     LaunchedEffect(Unit){
-//        if(!viewModel.isRepositoryAuthorized()) viewModel.authorizeRepository()
         viewModel.refreshState(noteId)
     }
     val uiState by viewModel.uiState.collectAsState()
@@ -52,7 +51,7 @@ fun Details(
             note.title,
             showDelete = true,
             onNavigateToHome = { onNavigateToHome() },
-            onDeleteNote = { onDeleteNote() }
+            onDeleteNote = { viewModel.deleteNote(onNavigateToHome) }
         ) } ) { innerPadding ->
 
         Column( modifier = Modifier.padding(innerPadding) ) {

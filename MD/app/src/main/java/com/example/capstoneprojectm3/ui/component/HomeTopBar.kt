@@ -38,39 +38,26 @@ fun HomeTopBar(onLogout: () -> Unit = {}) {
     )
     if(isLoggingOut){
         AlertDialog(
-            onDismissRequest = {
-                // Dismiss the dialog when the user clicks outside the dialog or on the back
-                // button. If you want to disable that functionality, simply use an empty
-                // onDismissRequest.
-                isLoggingOut = false
-            },
+            onDismissRequest = { isLoggingOut = false },
             icon = { Icon(
                 painterResource(R.drawable.baseline_logout_24) ,
                 contentDescription = "logout icon") },
-            title = {
-                Text(text = "Logout")
-            },
-            text = {
-                Text("Do you really want to log out from this account? ")
-            },
+            title = { Text(text = "Logout") },
+            text = { Text("Do you really want to log out from this account? ") },
             confirmButton = {
                 TextButton(
                     onClick = {
                         isLoggingOut = false
                         onLogout()
                     }
-                ) {
-                    Text("Logout")
-                }
+                ) { Text("Logout") }
             },
             dismissButton = {
                 TextButton(
                     onClick = {
                         isLoggingOut = false
                     }
-                ) {
-                    Text("Cancel")
-                }
+                ) { Text("Cancel") }
             }
         )
     }
