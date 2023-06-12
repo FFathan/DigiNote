@@ -38,10 +38,31 @@ class HomeViewModel(private val repository: NoteRepository, private val preferen
 
     fun fetchNoteList() {
         viewModelScope.launch {
-            preferences.getAuthToken().collect{ authToken ->
-                repository.mockGetAllNotes(authToken, 1, 1)
+//            preferences.getAuthToken().collect{ authToken ->
+//                repository.mockGetAllNotes(authToken, 1, 1)
+//            }
+            _uiState.value = HomeUiState(
+                isLoading = true,
+            )
+            try{
+                repository.getAllNotes()
+                _uiState.value = HomeUiState(
+                    isLoading = false,
+                    isSuccess = true,
+                    noteList = repository.homeNoteList
+                )
+            } catch (e: Exception){
+                _uiState.value = HomeUiState(
+                    isLoading = false,
+                    isFailed = true,
+                )
+                setHomeRequireUpdate(false)
             }
         }
+    }
+
+    fun setHomeRequireUpdate(isRequireUpdate: Boolean) {
+        repository.isHomeRequireUpdate = isRequireUpdate
     }
 
     fun refreshState(){

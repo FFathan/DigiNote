@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.capstoneprojectm3.apihandler.*
 import com.example.capstoneprojectm3.ui.data.Note
 import com.example.capstoneprojectm3.utils.extractMessageFromJson
+import kotlinx.coroutines.delay
 import retrofit2.HttpException
 
 class NoteRepository {
@@ -32,7 +33,9 @@ class NoteRepository {
     }
 
     suspend fun getAllNotes() {
+        delay(3000)
         homeNoteList = apiService.getAllNotes().noteList
+        Log.d("getAllNotes()", "noteList: $homeNoteList")
         isHomeRequireUpdate = false
     }
 

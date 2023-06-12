@@ -46,12 +46,11 @@ fun Home(
     )
 ) {
     Log.d("home", "")
-
     LaunchedEffect(Unit){
         if(!viewModel.isRepositoryAuthorized()) viewModel.authorizeRepository()
-        if(viewModel.isHomeRequireUpdate()) viewModel.fetchNoteList()
         viewModel.refreshState()
     }
+    if(viewModel.isHomeRequireUpdate()) viewModel.fetchNoteList()
 
     val uiState by viewModel.uiState.collectAsState()
     val noteList = uiState.noteList
@@ -59,10 +58,12 @@ fun Home(
     Scaffold(
         topBar = { HomeTopBar(onLogout = { viewModel.logout(onNavigateToLogin) }) },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = { onNavigateToAddNote() },
-                modifier = Modifier.padding(end = 40.dp, bottom = 40.dp)) {
-                Icon(Icons.Filled.Add, "Add new note")
+            if(uiState.isSuccess){
+                FloatingActionButton(
+                    onClick = { onNavigateToAddNote() },
+                    modifier = Modifier.padding(end = 40.dp, bottom = 40.dp)) {
+                    Icon(Icons.Filled.Add, "Add new note")
+                }
             }
         },
 
@@ -74,6 +75,16 @@ fun Home(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 16.dp)
             ) {
+                if(uiState.isLoading) {
+                    items(10) {
+                        NoteCard(
+                            "Loading...",
+                            "Loading...",
+                            "Loading...",
+                            modifier = Modifier.clickable(onClick = {})
+                        )
+                    }
+                }
                 if(uiState.isSuccess) {
                     items(noteList){note ->
                         NoteCard(
@@ -82,6 +93,16 @@ fun Home(
                             note.description,
                             modifier = Modifier.clickable(onClick = { onNavigateToDetails(note.noteId) })
                         )
+                    }
+                }
+                if(uiState.isFailed) {
+                    items(1) {
+                        Button(onClick = {
+                            viewModel.setHomeRequireUpdate(true)
+                            viewModel.fetchNoteList()
+                        }) {
+                            Text("Retry")
+                        }
                     }
                 }
             }

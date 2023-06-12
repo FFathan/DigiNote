@@ -117,7 +117,7 @@ fun AddNote(
                 )
                 Button(
                     onClick = {
-                        viewModel.addNote(context, onNavigateToDetails)
+//                        viewModel.addNote(context, onNavigateToDetails)
                     },
                     enabled = title.isNotEmpty() && isImageCaptured
                 ) {
