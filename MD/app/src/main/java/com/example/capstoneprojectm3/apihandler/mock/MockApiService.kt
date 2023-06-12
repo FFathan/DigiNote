@@ -27,6 +27,10 @@ class MockApiService : ApiService {
         return GetAllNotesResponse(false, "getAllNotes succeed", mockNoteList)
     }
 
+    override suspend fun getAllNotes(): GetAllNotesResponse {
+        return GetAllNotesResponse(false, "getAllNotes succeed", getMockHomeNoteList())
+    }
+
     override suspend fun getNoteById(
         id: String,
         authToken: String,
@@ -71,10 +75,10 @@ class MockApiService : ApiService {
             val descriptionVariation = description.substring(0, endIndex)
 
             val note = Note(
-                id.toString(),
-                "$title $id",
-                date,
-                descriptionVariation
+                noteId = id.toString(),
+                title = "$title $id",
+                date = date,
+                description = descriptionVariation
             )
             listNoteExample.add(note)
         }

@@ -31,6 +31,11 @@ class NoteRepository {
         return apiService.register(username, email, password)
     }
 
+    suspend fun getAllNotes() {
+        homeNoteList = apiService.getAllNotes().noteList
+        isHomeRequireUpdate = false
+    }
+
     suspend fun mockSignUp(username: String, email: String, password: String): RegisterResponse {
         return apiService.register(username, email, password)
     }

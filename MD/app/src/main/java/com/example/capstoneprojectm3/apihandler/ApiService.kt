@@ -28,6 +28,9 @@ interface ApiService {
         @Query("size") size: Int,
     ): GetAllNotesResponse
 
+    @GET("notes")
+    suspend fun getAllNotes(): GetAllNotesResponse
+
     @GET("notes/{id}")
     suspend fun getNoteById(
         @Path("id") id: String,

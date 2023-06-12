@@ -162,16 +162,16 @@ fun isUpdatingNote(sourceTitle: String, currentTitle: String, sourceDescription:
 fun DetailsPreview() {
     CapstoneProjectM3Theme {
         Surface {
-            val noteId = "1"
-            val title = "Note Title 1"
-            val date = "DD/MM/YYYY 12:34:56"
-            val description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
-            val noteExample = Note(
-                noteId,
-                title,
-                date,
-                description
-            )
+//            val noteId = "1"
+//            val title = "Note Title 1"
+//            val date = "DD/MM/YYYY 12:34:56"
+//            val description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor"
+//            val noteExample = Note(
+//                noteId,
+//                title,
+//                date,
+//                description
+//            )
 //            Details(noteExample)
         }
     }
