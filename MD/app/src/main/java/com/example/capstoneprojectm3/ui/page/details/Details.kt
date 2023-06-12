@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -12,6 +13,8 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,6 +23,8 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.AsyncImage
+import coil.compose.AsyncImagePainter
 import com.example.capstoneprojectm3.DatastorePreferences
 import com.example.capstoneprojectm3.ViewModelFactory
 import com.example.capstoneprojectm3.di.Injection
@@ -54,6 +59,7 @@ fun Details(
     if(updatedDescription == "") updatedDescription = uiState.noteDetails.description
 
     var isUpdatingNote by rememberSaveable { mutableStateOf(false) }
+    var isLoadingImage by rememberSaveable { mutableStateOf(true) }
 
     LaunchedEffect(Unit){
         viewModel.refreshState(noteId)
@@ -142,7 +148,22 @@ fun Details(
                     }
                 }
             }
-
+            if(selectedTabIndex == 1) {
+                if(isLoadingImage) {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 16.dp))
+                }
+                AsyncImage(
+                    model = note.imageUrl,
+                    contentDescription = "physical note image",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth(),
+                    onState = { state ->
+                        isLoadingImage = state is AsyncImagePainter.State.Loading
+                    },
+                )
+            }
         }
     }
 }
