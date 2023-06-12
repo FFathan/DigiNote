@@ -9,17 +9,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Implementing authorizing-unauthorizing system">
+    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Implemented Login Progress Indicator.&#10;Implemented disabling login button on conditions">
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/login/Login.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/login/Login.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/login/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/login/LoginViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/signup/SignUp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/signup/SignUp.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/signup/SignUpViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/signup/SignUpViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -745,7 +745,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686551120126</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Implemented Login Progress Indicator.&#10;Implemented disabling login button on conditions">
+      <created>1686557406199</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1686557406199</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -775,7 +782,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Changing HomeViewModel fetchNoteList() to use newly added repository.mockGetAllNotes()" />
     <MESSAGE value="Adding LoginViewModel and DatastorePreferences" />
     <MESSAGE value="using onNavigateToHome inside LoginViewModel" />
     <MESSAGE value="using LaunchedEffect to run onNavigateToHome once" />
@@ -800,6 +806,7 @@
     <MESSAGE value="Fixing delete note confirmation dialog.&#10;Implementing Delete Note feature." />
     <MESSAGE value="Changing homeNoteList implementation on repository by not using Flow&lt;&gt;" />
     <MESSAGE value="Implementing authorizing-unauthorizing system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementing authorizing-unauthorizing system" />
+    <MESSAGE value="Implemented Login Progress Indicator.&#10;Implemented disabling login button on conditions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented Login Progress Indicator.&#10;Implemented disabling login button on conditions" />
   </component>
 </project>

@@ -42,6 +42,7 @@ fun SignUp(
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var confirmPassword by rememberSaveable { mutableStateOf("") }
+    val uiState by viewModel.uiState.collectAsState()
 
     Column(
         modifier = Modifier
@@ -50,6 +51,7 @@ fun SignUp(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically)
     ) {
+
         Text(
             text = "Sign Up",
             style = MaterialTheme.typography.headlineLarge
@@ -80,11 +82,24 @@ fun SignUp(
             visualTransformation = PasswordVisualTransformation(),
             singleLine = true
         )
-        Button(onClick = { viewModel.signUp(username, email, password, context, onNavigateToLogin) }) {
+        if(password != confirmPassword) {
+            Text(
+                text = "Password and Confirm Password must be the same",
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
+        Button(
+            onClick = { viewModel.signUp(username, email, password, context, onNavigateToLogin) },
+            enabled = username.isNotBlank() && email.isNotBlank() && password.isNotBlank() && confirmPassword.isNotBlank() && password == confirmPassword
+        ) {
             Text("Sign Up")
         }
         TextButton(onClick = { onNavigateToLogin("") }) {
             Text("or Login", textDecoration = TextDecoration.Underline)
+        }
+        if (uiState.isLoading) {
+            CircularProgressIndicator()
         }
     }
 }

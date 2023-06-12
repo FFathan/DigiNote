@@ -2,7 +2,6 @@ package com.example.capstoneprojectm3.ui.page.login
 
 import android.content.Context
 import android.content.res.Configuration
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
