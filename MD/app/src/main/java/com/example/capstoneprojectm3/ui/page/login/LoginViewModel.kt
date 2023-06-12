@@ -10,15 +10,18 @@ import com.example.capstoneprojectm3.data.NoteRepository
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import com.example.capstoneprojectm3.utils.extractMessageFromJson
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 class LoginViewModel(private val repository: NoteRepository, private val preferences: DatastorePreferences) : ViewModel() {
-//    private val _uiState: MutableStateFlow<LoginUiState> =
-//        MutableStateFlow(LoginUiState())
-//    val uiState: StateFlow<LoginUiState>
-//        get() = _uiState
+    private val _uiState: MutableStateFlow<LoginUiState> =
+        MutableStateFlow(LoginUiState())
+    val uiState: StateFlow<LoginUiState>
+        get() = _uiState
 
     fun login(username: String, password: String, context: Context, onNavigateToHome: () -> Unit) {
         viewModelScope.launch {
+            _uiState.value = LoginUiState(isLoading = true)
 //            val loginResponse = repository.mockLogin(username, password)
             try {
                 val loginResponse = repository.login(username, password)
@@ -28,11 +31,14 @@ class LoginViewModel(private val repository: NoteRepository, private val prefere
                     preferences.setLoginStatus(true)
                     preferences.setAuthToken(authToken)
                     onNavigateToHome()
+                    _uiState.value = LoginUiState(isLoading = false, isSuccess = true)
                 }
             } catch (e: HttpException) {
                 val errorBody = e.response()?.errorBody()?.string()
                 Toast.makeText(context, "Login Failed: ${errorBody?.extractMessageFromJson()}", Toast.LENGTH_LONG).show()
+                _uiState.value = LoginUiState(isLoading = false, isFailed = true)
             }
+
         }
     }
     fun navigateIfHasLoggedInBefore(onNavigateToHome: () -> Unit) {
@@ -44,10 +50,8 @@ class LoginViewModel(private val repository: NoteRepository, private val prefere
     }
 }
 
-//data class LoginUiState (
-//    val isLoading: Boolean = true,
-//    val isSuccess: Boolean = false,
-//    val isFailed: Boolean = false,
-//    val isLoggedIn: Boolean = false,
-//    val authToken: String = ""
-//)
+data class LoginUiState (
+    val isLoading: Boolean = false,
+    val isSuccess: Boolean = false,
+    val isFailed: Boolean = false,
+)

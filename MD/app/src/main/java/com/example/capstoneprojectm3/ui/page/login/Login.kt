@@ -45,6 +45,7 @@ fun Login(
     }
     var username by rememberSaveable { mutableStateOf(justSignedUpUsername) }
     var password by rememberSaveable { mutableStateOf("") }
+    val uiState by viewModel.uiState.collectAsState()
     val context = LocalContext.current
 
     Column(
@@ -60,9 +61,9 @@ fun Login(
         )
         OutlinedTextField(
             value = username,
-            onValueChange = { username = it},
+            onValueChange = { username = it },
             label = { Text("Username or Email") },
-            singleLine = true
+            singleLine = true,
         )
         OutlinedTextField(
             value = password,
@@ -71,15 +72,23 @@ fun Login(
             visualTransformation = PasswordVisualTransformation(),
             singleLine = true
         )
-        Button(onClick = { viewModel.login(username, password, context, onNavigateToHome) }) {
+        Button(
+            onClick = { viewModel.login(username, password, context, onNavigateToHome) },
+            enabled = !uiState.isLoading && username.isNotBlank() && password.isNotBlank()
+        ) {
             Text("Login")
         }
-        TextButton(onClick = { onNavigateToSignUp() }) {
+        TextButton(
+            onClick = { onNavigateToSignUp() },
+            enabled = !uiState.isLoading
+        ) {
             Text("or Sign Up", textDecoration = TextDecoration.Underline)
+        }
+        if (uiState.isLoading) {
+            CircularProgressIndicator()
         }
     }
 }
-
 @Preview(
     name = "Login",
     widthDp = 360,
