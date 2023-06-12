@@ -2,13 +2,15 @@ package com.example.capstoneprojectm3.ui.page.details
 
 import android.content.Context
 import android.content.res.Configuration
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
@@ -40,11 +42,22 @@ fun Details(
     )
 ) {
     var selectedTabIndex by rememberSaveable { mutableStateOf(0) }
-    LaunchedEffect(Unit){
-        viewModel.refreshState(noteId)
-    }
     val uiState by viewModel.uiState.collectAsState()
     val note = uiState.noteDetails
+
+    var updatedTitle by rememberSaveable { mutableStateOf("") }
+    if(updatedTitle == "") updatedTitle = uiState.noteDetails.title
+    var updatedDate by rememberSaveable { mutableStateOf("") }
+    if(updatedDate == "") updatedDate = uiState.noteDetails.date
+    var updatedDescription by rememberSaveable { mutableStateOf("") }
+    if(updatedDescription == "") updatedDescription = uiState.noteDetails.description
+
+    var isUpdatingNote by rememberSaveable { mutableStateOf(false) }
+
+    LaunchedEffect(Unit){
+        viewModel.refreshState(noteId)
+        isUpdatingNote = isUpdatingNote(note.title, updatedTitle, note.description, updatedDescription)
+    }
 
     Scaffold(
         topBar = { DetailsTopBar(
@@ -80,13 +93,51 @@ fun Details(
                 )
             }
             if(selectedTabIndex == 0) {
-                Text(
-                    text = note.description,
-                    modifier = Modifier.padding(16.dp)
-                )
+                Box {
+                    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+                        Text(
+                            text = "Created at: $updatedDate",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 16.dp, bottom = 4.dp),
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                        OutlinedTextField(
+                            value = updatedTitle,
+                            onValueChange = {
+                                updatedTitle = it
+                                isUpdatingNote = note.title != updatedTitle || note.description != updatedDescription
+                            },
+                            label = { Text("Note Title") },
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            singleLine = true,
+                        )
+                        OutlinedTextField(
+                            value = updatedDescription,
+                            onValueChange = {
+                                updatedDescription = it
+                                isUpdatingNote = note.title != updatedTitle || note.description != updatedDescription
+                            },
+                            label = { Text("Note Description") },
+                            modifier = Modifier
+                                .fillMaxSize(),
+                        )
+                    }
+                    if(isUpdatingNote) {
+                        Button(onClick = {}, modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 80.dp)) {
+                            Text("Update Note")
+                        }
+                    }
+                }
             }
+
         }
     }
+}
+
+fun isUpdatingNote(sourceTitle: String, currentTitle: String, sourceDescription: String, currentDescription: String): Boolean {
+    return sourceTitle != currentTitle || sourceDescription != currentDescription
 }
 
 @Preview(
