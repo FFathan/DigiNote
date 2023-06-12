@@ -55,6 +55,7 @@ class HomeViewModel(private val repository: NoteRepository, private val preferen
     fun logout(onNavigateToLogin: () -> Unit) {
         viewModelScope.launch {
             preferences.setLoginStatus(false)
+            repository.unauthorizeApiService()
             onNavigateToLogin()
         }
     }

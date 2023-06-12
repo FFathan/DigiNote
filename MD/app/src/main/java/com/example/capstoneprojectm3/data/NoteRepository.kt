@@ -1,5 +1,6 @@
 package com.example.capstoneprojectm3.data
 
+import android.util.Log
 import com.example.capstoneprojectm3.apihandler.*
 import com.example.capstoneprojectm3.ui.data.Note
 import com.example.capstoneprojectm3.utils.extractMessageFromJson
@@ -12,8 +13,14 @@ class NoteRepository {
     var homeNoteList = listOf<Note>()
 
     fun authorizeApiService(authToken: String) {
-        apiService = ApiConfig.mockGetApiService(authToken)
+        apiService = ApiConfig.getApiService(authToken)
         isAuthorized = true
+        Log.d("NoteRepository", "authorizeApiService: $authToken")
+    }
+
+    fun unauthorizeApiService() {
+        apiService = ApiConfig.getApiService()
+        isAuthorized = false
     }
 
     suspend fun login(username: String, password: String): LoginResponse {

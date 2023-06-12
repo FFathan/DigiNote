@@ -10,6 +10,6 @@ data class GetAllNotesResponse (
     @field:SerializedName("message")
     val message: String,
 
-    @field:SerializedName("listNote")
+    @field:SerializedName("listnote")
     val noteList: List<Note>,
 )

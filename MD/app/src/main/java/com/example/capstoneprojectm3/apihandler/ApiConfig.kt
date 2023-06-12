@@ -36,7 +36,7 @@ class ApiConfig {
                 .addInterceptor(Interceptor { chain ->
                     val request = chain.request()
                     val requestHeaders = request.newBuilder()
-                        .addHeader("Authorization", "Bearer $authToken")
+                        .addHeader("Authorization", authToken)
                         .build()
                     chain.proceed(requestHeaders)
                 })

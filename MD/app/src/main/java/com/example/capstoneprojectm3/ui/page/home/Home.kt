@@ -48,7 +48,7 @@ fun Home(
     Log.d("home", "")
 
     LaunchedEffect(Unit){
-//        if(!viewModel.isRepositoryAuthorized()) viewModel.authorizeRepository()
+        if(!viewModel.isRepositoryAuthorized()) viewModel.authorizeRepository()
         if(viewModel.isHomeRequireUpdate()) viewModel.fetchNoteList()
         viewModel.refreshState()
     }
