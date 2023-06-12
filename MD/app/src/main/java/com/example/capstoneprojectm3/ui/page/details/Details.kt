@@ -34,13 +34,14 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 fun Details(
     noteId: String,
     onNavigateToHome: () -> Unit = {},
-    onDeleteNote: () -> Unit = {},
+//    onDeleteNote: () -> Unit = {},
     viewModel: DetailsViewModel = viewModel(
         factory = ViewModelFactory(
             Injection.provideRepository(),
             DatastorePreferences.getInstance(LocalContext.current.dataStore))
     )
 ) {
+    val context = LocalContext.current
     var selectedTabIndex by rememberSaveable { mutableStateOf(0) }
     val uiState by viewModel.uiState.collectAsState()
     val note = uiState.noteDetails
@@ -125,8 +126,18 @@ fun Details(
                         )
                     }
                     if(isUpdatingNote) {
-                        Button(onClick = {}, modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 80.dp)) {
-                            Text("Update Note")
+                        val modifier = Modifier
+                            .align(Alignment.BottomCenter)
+                            .padding(bottom = 80.dp)
+                        if(uiState.isLoading){
+                            CircularProgressIndicator(modifier = modifier)
+                        } else {
+                            Button(
+                                onClick = { viewModel.updateNote(note.noteId, updatedTitle, updatedDescription, context) },
+                                modifier = modifier
+                            ) {
+                                Text("Update Note")
+                            }
                         }
                     }
                 }

@@ -51,6 +51,7 @@ class MockApiService : ApiService {
         date: String,
         description: String
     ): EditNoteResponse {
+        delay(1000)
         return EditNoteResponse(false, "editNote succeed")
     }
 

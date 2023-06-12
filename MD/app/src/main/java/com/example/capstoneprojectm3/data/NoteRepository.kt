@@ -44,6 +44,23 @@ class NoteRepository {
         isHomeRequireUpdate = false
     }
 
+    suspend fun mockUpdateNote(authToken: String, noteId: String, title: String, date:String, description: String): UpdatedNoteResponse {
+        val updatedNote = UpdatedNote(noteId, "authToken", title, description, "updated at: ")
+
+        var updateResponse: EditNoteResponse
+        return try{
+            updateResponse = ApiConfig.mockGetApiService().editNote(authToken, noteId, title, date, description)
+            updateLocalHomeNoteById(noteId, title, description)
+            UpdatedNoteResponse(false, "message", updatedNote)
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            updateResponse = EditNoteResponse(true, "Http Error: ${errorBody?.extractMessageFromJson()}")
+            UpdatedNoteResponse(true, "message", UpdatedNote("", "", "", "", ""))
+        }
+    }
+    data class UpdatedNoteResponse(val error: Boolean, val message: String, val updatedNote: UpdatedNote)
+    data class UpdatedNote(val noteId: String, val userId: String, val title: String, val description: String, val updated:String)
+
     suspend fun mockDeleteNote(authToken: String, noteId: String): DeleteNoteResponse {
         var deleteResponse: DeleteNoteResponse
         return try{
@@ -60,6 +77,19 @@ class NoteRepository {
 
     private fun deleteLocalHomeNoteById(noteId: String) {
         homeNoteList = homeNoteList.filter { it.noteId != noteId }
+    }
+
+    private fun updateLocalHomeNoteById(noteId: String, title: String, description: String) {
+        var updatedNote = homeNoteList.find { it.noteId == noteId }
+        val updatedNoteIndex = homeNoteList.indexOf(updatedNote)
+        updatedNote = updatedNote?.copy(title = title, description = description)
+
+        if(updatedNote != null){
+            homeNoteList = homeNoteList.toMutableList().apply {
+                set(updatedNoteIndex, updatedNote)
+            }
+        }
+
     }
 
     companion object {

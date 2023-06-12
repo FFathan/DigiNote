@@ -72,9 +72,9 @@ fun MainNavHost(
                 onNavigateToHome = { navController.navigate(Screen.Home.route) {
                     popUpTo(Screen.Home.route) { inclusive = true}
                 } },
-                onDeleteNote = { navController.navigate(Screen.Home.route) {
-                    popUpTo(Screen.Home.route) { inclusive = true}
-                } },
+//                onDeleteNote = { navController.navigate(Screen.Home.route) {
+//                    popUpTo(Screen.Home.route) { inclusive = true}
+//                } },
             )
         }
         composable(Screen.AddNote.route) {
