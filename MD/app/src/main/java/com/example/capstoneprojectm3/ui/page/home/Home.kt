@@ -86,6 +86,11 @@ fun Home(
                     }
                 }
                 if(uiState.isSuccess) {
+                    if(noteList.isEmpty()) {
+                        item {
+                            Text("No notes found")
+                        }
+                    }
                     items(noteList){note ->
                         NoteCard(
                             note.title,
