@@ -87,6 +87,9 @@ class NoteRepository {
             val errorBody = e.response()?.errorBody()?.string()
             updateResponse = EditNoteResponse(true, "Http Error: ${errorBody?.extractMessageFromJson()}", Note("", "", "", "", "", "",))
             updateResponse
+        } catch (e: Exception) {
+            updateResponse = EditNoteResponse(true, "Update Note Failed", Note("", "", "", "", "", "",))
+            updateResponse
         }
     }
 

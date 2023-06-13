@@ -39,7 +39,8 @@ class DetailsViewModel(private val repository: NoteRepository, private val prefe
     fun updateNote(noteId: String, title: String, description: String, context: Context) {
         viewModelScope.launch {
             _uiState.value = DetailsUiState(isLoading = true)
-            val updateNoteResponse = repository.mockUpdateNote("authToken", noteId, title, "date", description)
+//            val updateNoteResponse = repository.mockUpdateNote("authToken", noteId, title, "date", description)
+            val updateNoteResponse = repository.updateNote(noteId, title, description)
             val isUpdated = !updateNoteResponse.error
             if(isUpdated) {
                 _uiState.value = DetailsUiState(
@@ -57,8 +58,8 @@ class DetailsViewModel(private val repository: NoteRepository, private val prefe
 }
 
 data class DetailsUiState (
-    val isLoading: Boolean = false,
-    val isSuccess: Boolean = false,
-    val isFailed: Boolean = false,
+    var isLoading: Boolean = false,
+    var isSuccess: Boolean = false,
+    var isFailed: Boolean = false,
     val noteDetails: Note = Note()
 )
