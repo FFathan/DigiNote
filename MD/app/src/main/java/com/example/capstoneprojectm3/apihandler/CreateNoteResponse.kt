@@ -1,5 +1,6 @@
 package com.example.capstoneprojectm3.apihandler
 
+import com.example.capstoneprojectm3.ui.data.Note
 import com.google.gson.annotations.SerializedName
 
 data class CreateNoteResponse (
@@ -7,5 +8,8 @@ data class CreateNoteResponse (
     val error: Boolean,
 
     @field:SerializedName("message")
-    val message: String
+    val message: String,
+
+    @field:SerializedName("note")
+    val note: Note
 )

@@ -82,7 +82,7 @@ fun MainNavHost(
                 onNavigateToHome = { navController.navigate(Screen.Home.route){
                     popUpTo(Screen.Home.route) { inclusive = true }
                 } },
-                onNavigateToDetails = { navController.navigate(Screen.Details.route){
+                onNavigateToDetails = { navController.navigate(Screen.Home.route){
                     popUpTo(Screen.Home.route)
                 } }
             )

@@ -2,7 +2,6 @@ package com.example.capstoneprojectm3.apihandler
 
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
@@ -41,10 +40,8 @@ interface ApiService {
     @Multipart
     @POST("notes")
     suspend fun createNote(
-        @Part file: MultipartBody.Part,
-        @Part("authToken") authToken: RequestBody,
+        @Part image: MultipartBody.Part,
         @Part("title") title: RequestBody,
-        @Part("description") description: RequestBody
     ): CreateNoteResponse
 
     @FormUrlEncoded

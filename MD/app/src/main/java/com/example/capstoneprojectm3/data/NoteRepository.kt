@@ -5,6 +5,8 @@ import com.example.capstoneprojectm3.apihandler.*
 import com.example.capstoneprojectm3.ui.data.Note
 import com.example.capstoneprojectm3.utils.extractMessageFromJson
 import kotlinx.coroutines.delay
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.HttpException
 
 class NoteRepository {
@@ -33,10 +35,18 @@ class NoteRepository {
     }
 
     suspend fun getAllNotes() {
-        delay(3000)
+        delay(2000)
         homeNoteList = apiService.getAllNotes().noteList
         Log.d("getAllNotes()", "noteList: $homeNoteList")
         isHomeRequireUpdate = false
+    }
+
+    suspend fun addNote(imagePart: MultipartBody.Part, title: RequestBody): CreateNoteResponse {
+        return apiService.createNote(imagePart, title)
+    }
+
+    fun addLocalHomeNote(note: Note) {
+        homeNoteList = listOf(note) + homeNoteList
     }
 
     suspend fun mockSignUp(username: String, email: String, password: String): RegisterResponse {
@@ -97,7 +107,6 @@ class NoteRepository {
                 set(updatedNoteIndex, updatedNote)
             }
         }
-
     }
 
     companion object {

@@ -40,12 +40,15 @@ class MockApiService : ApiService {
     }
 
     override suspend fun createNote(
-        file: MultipartBody.Part,
-        authToken: RequestBody,
+        image: MultipartBody.Part,
         title: RequestBody,
-        description: RequestBody
     ): CreateNoteResponse {
-        return CreateNoteResponse(false, "createNote succeed")
+        return CreateNoteResponse(false, "createNote succeed", Note(
+            noteId = "1",
+            title = "Note 1",
+            date = "08/06/2023 01:23:45",
+            description = "description"
+        ))
     }
 
     override suspend fun editNote(
