@@ -54,6 +54,14 @@ interface ApiService {
         @Field("description") description: String,
     ): EditNoteResponse
 
+    @FormUrlEncoded
+    @POST("notes/edit/{noteId}")
+    suspend fun editNote(
+        @Path("noteId") noteId: String,
+        @Field("title") title: String,
+        @Field("description") description: String,
+    ): EditNoteResponse
+
     @DELETE("notes/delete")
     suspend fun deleteNote(
         @Query("authToken") authToken: String,

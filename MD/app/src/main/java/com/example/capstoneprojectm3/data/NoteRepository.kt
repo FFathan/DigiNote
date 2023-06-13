@@ -72,10 +72,24 @@ class NoteRepository {
             UpdatedNoteResponse(false, "message", updatedNote)
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
-            updateResponse = EditNoteResponse(true, "Http Error: ${errorBody?.extractMessageFromJson()}")
+            updateResponse = EditNoteResponse(true, "Http Error: ${errorBody?.extractMessageFromJson()}", Note("", "", "", "", "", "",))
             UpdatedNoteResponse(true, "message", UpdatedNote("", "", "", "", ""))
         }
     }
+
+    suspend fun updateNote(noteId: String, title: String, description: String): EditNoteResponse {
+        var updateResponse: EditNoteResponse
+        return try{
+            updateResponse = apiService.editNote(noteId, title, description)
+            updateLocalHomeNoteById(noteId, title, description)
+            updateResponse
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            updateResponse = EditNoteResponse(true, "Http Error: ${errorBody?.extractMessageFromJson()}", Note("", "", "", "", "", "",))
+            updateResponse
+        }
+    }
+
     data class UpdatedNoteResponse(val error: Boolean, val message: String, val updatedNote: UpdatedNote)
     data class UpdatedNote(val noteId: String, val userId: String, val title: String, val description: String, val updated:String)
 

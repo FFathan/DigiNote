@@ -59,7 +59,25 @@ class MockApiService : ApiService {
         description: String
     ): EditNoteResponse {
         delay(1000)
-        return EditNoteResponse(false, "editNote succeed")
+        return EditNoteResponse(false, "editNote succeed", Note(
+            noteId = "1",
+            title = "Note 1",
+            date = "08/06/2023 01:23:45",
+            description = "description"
+        ))
+    }
+
+    override suspend fun editNote(
+        noteId: String,
+        title: String,
+        description: String
+    ): EditNoteResponse {
+        return EditNoteResponse(false, "editNote succeed", Note(
+            noteId = "1",
+            title = "Note 1",
+            date = "08/06/2023 01:23:45",
+            description = "description"
+        ))
     }
 
     override suspend fun deleteNote(authToken: String, noteId: String): DeleteNoteResponse {
