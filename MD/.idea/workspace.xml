@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Implemented updateNote">
+    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Implemented Text() if noteList.isEmpty() in Home">
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -17,12 +17,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/ApiService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/DeleteNoteResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/DeleteNoteResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/mock/MockApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/mock/MockApiService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/data/NoteRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/data/NoteRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/Details.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/Details.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/DetailsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/DetailsViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -482,13 +477,6 @@
       <option name="presentableId" value="Default" />
       <updated>1685177341011</updated>
     </task>
-    <task id="LOCAL-00001" summary="First Commit. Implementing Home Page UI">
-      <created>1685264893045</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1685264893045</updated>
-    </task>
     <task id="LOCAL-00002" summary="Implementing Login Page UI">
       <created>1685269555648</created>
       <option name="number" value="00002" />
@@ -818,7 +806,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686660368108</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Implemented deleteNote">
+      <created>1686661718855</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1686661718855</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Implemented Text() if noteList.isEmpty() in Home">
+      <created>1686662017272</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1686662017272</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -832,7 +834,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="getallnotesccapi" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -848,8 +850,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Working CC API integration on Sign Up" />
-    <MESSAGE value="Implemented CC API integration on Sign Up.&#10;Implemented Logout button on Home (without confirmation)" />
     <MESSAGE value="Implemented ViewModel for AddNote.&#10;Implemented AddNote Button.&#10;Implemented singleLine = true for every OutlinedTextField" />
     <MESSAGE value="Adding Logout dialog on Home" />
     <MESSAGE value="Fixing bug on AddNote, that makes user can cancel on taking picture to make isImageCaptured true, by adding if(isSuccess) condition" />
@@ -873,6 +873,8 @@
     <MESSAGE value="Implemented AsyncImage on Details's second tab" />
     <MESSAGE value="Implementing updateNote, but still not tested" />
     <MESSAGE value="Implemented updateNote" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented updateNote" />
+    <MESSAGE value="Implemented deleteNote" />
+    <MESSAGE value="Implemented Text() if noteList.isEmpty() in Home" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented Text() if noteList.isEmpty() in Home" />
   </component>
 </project>

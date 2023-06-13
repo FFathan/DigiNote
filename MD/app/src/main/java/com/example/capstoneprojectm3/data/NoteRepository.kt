@@ -49,34 +49,6 @@ class NoteRepository {
         homeNoteList = listOf(note) + homeNoteList
     }
 
-    suspend fun mockSignUp(username: String, email: String, password: String): RegisterResponse {
-        return apiService.register(username, email, password)
-    }
-
-    suspend fun mockLogin(username: String, password: String): LoginResponse {
-        return apiService.login(username, password)
-    }
-
-    suspend fun mockGetAllNotes(authToken: String, page: Int, size: Int) {
-        homeNoteList = ApiConfig.mockGetApiService().getAllNotes(authToken, page, size).noteList
-        isHomeRequireUpdate = false
-    }
-
-    suspend fun mockUpdateNote(authToken: String, noteId: String, title: String, date:String, description: String): UpdatedNoteResponse {
-        val updatedNote = UpdatedNote(noteId, "authToken", title, description, "updated at: ")
-
-        var updateResponse: EditNoteResponse
-        return try{
-            updateResponse = ApiConfig.mockGetApiService().editNote(authToken, noteId, title, date, description)
-            updateLocalHomeNoteById(noteId, title, description)
-            UpdatedNoteResponse(false, "message", updatedNote)
-        } catch (e: HttpException) {
-            val errorBody = e.response()?.errorBody()?.string()
-            updateResponse = EditNoteResponse(true, "Http Error: ${errorBody?.extractMessageFromJson()}", Note("", "", "", "", "", "",))
-            UpdatedNoteResponse(true, "message", UpdatedNote("", "", "", "", ""))
-        }
-    }
-
     suspend fun updateNote(noteId: String, title: String, description: String): EditNoteResponse {
         var updateResponse: EditNoteResponse
         return try{
@@ -90,23 +62,6 @@ class NoteRepository {
         } catch (e: Exception) {
             updateResponse = EditNoteResponse(true, "Update Note Failed", Note("", "", "", "", "", "",))
             updateResponse
-        }
-    }
-
-    data class UpdatedNoteResponse(val error: Boolean, val message: String, val updatedNote: UpdatedNote)
-    data class UpdatedNote(val noteId: String, val userId: String, val title: String, val description: String, val updated:String)
-
-    suspend fun mockDeleteNote(authToken: String, noteId: String): DeleteNoteResponse {
-        var deleteResponse: DeleteNoteResponse
-        return try{
-            deleteResponse = ApiConfig.mockGetApiService().deleteNote(authToken, noteId)
-            deleteLocalHomeNoteById(noteId)
-            deleteResponse
-        } catch (e: HttpException) {
-            val errorBody = e.response()?.errorBody()?.string()
-
-            deleteResponse = DeleteNoteResponse(true, "Http Error: ${errorBody?.extractMessageFromJson()}")
-            deleteResponse
         }
     }
 
