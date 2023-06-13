@@ -1,16 +1,19 @@
 package com.example.capstoneprojectm3.ui.component
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.painterResource
+import com.example.capstoneprojectm3.R
 
 @Composable
-fun HomeTopBar() {
+fun HomeTopBar(onLogout: () -> Unit = {}) {
+    var isLoggingOut by rememberSaveable { mutableStateOf(false) }
     CenterAlignedTopAppBar(
         title = {
             Text(
@@ -18,11 +21,10 @@ fun HomeTopBar() {
             )
         },
         navigationIcon = {
-            IconButton(onClick = { /* doSomething() */ }) {
+            IconButton(onClick = { isLoggingOut = true }) {
                 Icon(
-                    imageVector = Icons.Filled.Menu,
-                    contentDescription = "Open menu"
-                )
+                    painterResource(id = R.drawable.baseline_logout_24),
+                    contentDescription = "logout")
             }
         },
         actions = {
@@ -34,4 +36,29 @@ fun HomeTopBar() {
             }
         }
     )
+    if(isLoggingOut){
+        AlertDialog(
+            onDismissRequest = { isLoggingOut = false },
+            icon = { Icon(
+                painterResource(R.drawable.baseline_logout_24) ,
+                contentDescription = "logout icon") },
+            title = { Text(text = "Logout") },
+            text = { Text("Do you really want to log out from this account? ") },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        isLoggingOut = false
+                        onLogout()
+                    }
+                ) { Text("Logout") }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = {
+                        isLoggingOut = false
+                    }
+                ) { Text("Cancel") }
+            }
+        )
+    }
 }

@@ -8,6 +8,10 @@ sealed class Screen(val route: String) {
     }
     object SignUp : Screen("signup")
     object Home: Screen("home")
-    object Details: Screen("details")
+    object Details: Screen("details?noteId={noteId}") {
+        fun with(noteId: String): String {
+            return route.replace("{noteId}", noteId)
+        }
+    }
     object AddNote: Screen("addnote")
 }

@@ -9,10 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Adding ViewModel to the Home Screen">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ViewModelFactory.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/data/NoteRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/di/Injection.kt" afterDir="false" />
+    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Implemented updateNote">
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -20,8 +17,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/home/Home.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/home/Home.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/home/HomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/home/HomeViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/ApiService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/DeleteNoteResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/DeleteNoteResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/mock/MockApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/mock/MockApiService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/data/NoteRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/data/NoteRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/Details.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/Details.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/DetailsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/details/DetailsViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,10 +83,12 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
+        <entry key="$PROJECT_DIR$/.." value="getallnotesccapi" />
         <entry key="$PROJECT_DIR$" value="MD" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -463,10 +466,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Compose Preview.MainNavHostPreview" />
-        <item itemvalue="Compose Preview.AddNotePreview" />
-        <item itemvalue="Compose Preview.DetailsPreview" />
         <item itemvalue="Compose Preview.LoginPreview" />
         <item itemvalue="Compose Preview.HomePreview - Home" />
+        <item itemvalue="Compose Preview.DetailsPreview" />
+        <item itemvalue="Compose Preview.AddNotePreview" />
       </list>
     </recent_temporary>
   </component>
@@ -549,7 +552,273 @@
       <option name="project" value="LOCAL" />
       <updated>1685901563612</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Making Repository, Injection, and connecting it to the ViewModel">
+      <created>1685904415573</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1685904415573</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Adding ApiConfig, ApiService, and its Responses">
+      <created>1686167487411</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1686167487411</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Changing ApiService functions to suspend, Adding ApiConfig and ApiService mocks">
+      <created>1686169473378</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1686169473378</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Changing HomeViewModel fetchNoteList() to use newly added repository.mockGetAllNotes()">
+      <created>1686170494389</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1686170494389</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Adding LoginViewModel and DatastorePreferences">
+      <created>1686216141430</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1686216141430</updated>
+    </task>
+    <task id="LOCAL-00016" summary="using onNavigateToHome inside LoginViewModel">
+      <created>1686217845419</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1686217845419</updated>
+    </task>
+    <task id="LOCAL-00017" summary="using LaunchedEffect to run onNavigateToHome once">
+      <created>1686219942359</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1686219942359</updated>
+    </task>
+    <task id="LOCAL-00018" summary="adapting Home to use preferences">
+      <created>1686222326294</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1686222326294</updated>
+    </task>
+    <task id="LOCAL-00019" summary="using viewModel on SignUp">
+      <created>1686223272348</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1686223272348</updated>
+    </task>
+    <task id="LOCAL-00020" summary="adding coil to gradle">
+      <created>1686238345072</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1686238345072</updated>
+    </task>
+    <task id="LOCAL-00021" summary="working add note, but cannot recapture image">
+      <created>1686238963802</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1686238963802</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Disabling FAB, if the image has been captured">
+      <created>1686242318278</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1686242318278</updated>
+    </task>
+    <task id="LOCAL-00023" summary="working login API">
+      <created>1686303434848</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1686303434848</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Adding Toast on unsuccessful login">
+      <created>1686400025344</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1686400025344</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Implemented CC API integration on Sign Up.&#10;Implemented Logout button on Home (without confirmation)">
+      <created>1686401416660</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1686401416660</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Implemented CC API integration on Sign Up.&#10;Implemented Logout button on Home (without confirmation)">
+      <created>1686401467173</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1686401467173</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Implemented ViewModel for AddNote.&#10;Implemented AddNote Button.&#10;Implemented singleLine = true for every OutlinedTextField">
+      <created>1686402634658</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1686402634658</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Adding Logout dialog on Home">
+      <created>1686403624431</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1686403624431</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Fixing bug on AddNote, that makes user can cancel on taking picture to make isImageCaptured true, by adding if(isSuccess) condition">
+      <created>1686404117448</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1686404117448</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Setting preferences login status to false when user logged out.&#10;Navigate user to Home when preferences login status is true.">
+      <created>1686405104067</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1686405104067</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Setting preferences login status to false when user logged out.&#10;Navigate user to Home when preferences login status is true.">
+      <created>1686405166031</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1686405166031</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Implemented saving fetched homeNoteList on repository.">
+      <created>1686484740047</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1686484740048</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Implemented DetailsViewModel">
+      <created>1686485165612</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1686485165613</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Implemented moving ID from Home -&gt; Details and showing the corresponding details of selected Home note">
+      <created>1686487698851</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1686487698851</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Implemented delete note confirmation dialog">
+      <created>1686488309621</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1686488309621</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Fixing delete note confirmation dialog.&#10;Implementing Delete Note feature.">
+      <created>1686490294195</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1686490294195</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Changing homeNoteList implementation on repository by not using Flow&lt;&gt;">
+      <created>1686491313585</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1686491313585</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Implementing authorizing-unauthorizing system">
+      <created>1686551120126</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1686551120126</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Implemented Login Progress Indicator.&#10;Implemented disabling login button on conditions">
+      <created>1686557406199</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1686557406199</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Implemented Sign Up Progress Indicator.&#10;Implemented disabling sign up button on conditions">
+      <created>1686558855822</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1686558855822</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Implemented Details's update note UI">
+      <created>1686567588611</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1686567588611</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Implemented Update Note with mock API">
+      <created>1686571600716</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1686571600716</updated>
+    </task>
+    <task id="LOCAL-00043" summary="changing the BASE_URL">
+      <created>1686571848005</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1686571848005</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Changing Note contract">
+      <created>1686573517402</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1686573517402</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Implemented getAllNotes CC API on Home.&#10;Adding 3 seconds delay on repo getAllNotes() to emulate loading state.&#10;Implemented the loading and failed state on Home.">
+      <created>1686577144475</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1686577144475</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Implemented AsyncImage on Details's second tab">
+      <created>1686578964221</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1686578964221</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Implementing updateNote, but still not tested">
+      <created>1686659466339</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1686659466339</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Implemented updateNote">
+      <created>1686660368108</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1686660368108</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -563,7 +832,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="getallnotesccapi" />
                       </list>
                     </value>
                   </entry>
@@ -579,16 +848,31 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="First Commit. Implementing Home Page UI" />
-    <MESSAGE value="Implementing Login Page UI" />
-    <MESSAGE value="Implementing Sign Up Page UI" />
-    <MESSAGE value="Implementing Details Page and Add Note Page UI" />
-    <MESSAGE value="Implementing navigations between pages. But, DetailsTopBar.kt onNavigateToHome still doesn't work" />
-    <MESSAGE value="committing .gitignore" />
-    <MESSAGE value="changing vcs.xml, deleting New Text Document" />
-    <MESSAGE value="working AddNote onNavigateToHome" />
-    <MESSAGE value="working Details onNavigateToHome and onDeleteNote" />
-    <MESSAGE value="Adding ViewModel to the Home Screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding ViewModel to the Home Screen" />
+    <MESSAGE value="Working CC API integration on Sign Up" />
+    <MESSAGE value="Implemented CC API integration on Sign Up.&#10;Implemented Logout button on Home (without confirmation)" />
+    <MESSAGE value="Implemented ViewModel for AddNote.&#10;Implemented AddNote Button.&#10;Implemented singleLine = true for every OutlinedTextField" />
+    <MESSAGE value="Adding Logout dialog on Home" />
+    <MESSAGE value="Fixing bug on AddNote, that makes user can cancel on taking picture to make isImageCaptured true, by adding if(isSuccess) condition" />
+    <MESSAGE value="Setting preferences login status to false when user logged out." />
+    <MESSAGE value="Setting preferences login status to false when user logged out.&#10;Navigate user to Home when preferences login status is true." />
+    <MESSAGE value="Implemented saving fetched homeNoteList on repository." />
+    <MESSAGE value="Implemented DetailsViewModel" />
+    <MESSAGE value="Implemented moving ID from Home -&gt; Details and showing the corresponding details of selected Home note" />
+    <MESSAGE value="Implemented delete note confirmation dialog" />
+    <MESSAGE value="Fixing delete note confirmation dialog.&#10;Implementing Delete Note feature." />
+    <MESSAGE value="Changing homeNoteList implementation on repository by not using Flow&lt;&gt;" />
+    <MESSAGE value="Implementing authorizing-unauthorizing system" />
+    <MESSAGE value="Implemented Login Progress Indicator.&#10;Implemented disabling login button on conditions" />
+    <MESSAGE value="Implemented Sign Up Progress Indicator.&#10;Implemented disabling sign up button on conditions" />
+    <MESSAGE value="Implemented Details's update note UI" />
+    <MESSAGE value="Implemented Update Note with mock API" />
+    <MESSAGE value="changing the BASE_URL" />
+    <MESSAGE value="Changing Note contract" />
+    <MESSAGE value="Implemented getAllNotes CC API" />
+    <MESSAGE value="Implemented getAllNotes CC API on Home.&#10;Adding 3 seconds delay on repo getAllNotes() to emulate loading state.&#10;Implemented the loading and failed state on Home." />
+    <MESSAGE value="Implemented AsyncImage on Details's second tab" />
+    <MESSAGE value="Implementing updateNote, but still not tested" />
+    <MESSAGE value="Implemented updateNote" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented updateNote" />
   </component>
 </project>

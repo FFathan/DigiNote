@@ -1,5 +1,6 @@
-package com.example.capstoneprojectm3.ui.page
+package com.example.capstoneprojectm3.ui.page.signup
 
+import android.content.Context
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,18 +12,37 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.capstoneprojectm3.DatastorePreferences
+import com.example.capstoneprojectm3.ViewModelFactory
+import com.example.capstoneprojectm3.di.Injection
 import com.example.capstoneprojectm3.ui.theme.CapstoneProjectM3Theme
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "login")
+
 @Composable
-fun SignUp(onNavigateToLogin: (username: String) -> Unit = {}) {
+fun SignUp(
+    onNavigateToLogin: (username: String) -> Unit = {},
+    viewModel: SignUpViewModel = viewModel(
+        factory = ViewModelFactory(
+            Injection.provideRepository(),
+            DatastorePreferences.getInstance(LocalContext.current.dataStore))
+    )
+) {
+    val context = LocalContext.current
     var username by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var confirmPassword by rememberSaveable { mutableStateOf("") }
+    val uiState by viewModel.uiState.collectAsState()
 
     Column(
         modifier = Modifier
@@ -31,6 +51,7 @@ fun SignUp(onNavigateToLogin: (username: String) -> Unit = {}) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically)
     ) {
+
         Text(
             text = "Sign Up",
             style = MaterialTheme.typography.headlineLarge
@@ -38,30 +59,47 @@ fun SignUp(onNavigateToLogin: (username: String) -> Unit = {}) {
         OutlinedTextField(
             value = username,
             onValueChange = { username = it},
-            label = { Text("Username") }
+            label = { Text("Username") },
+            singleLine = true
         )
         OutlinedTextField(
             value = email,
             onValueChange = { email = it},
-            label = { Text("Email") }
+            label = { Text("Email") },
+            singleLine = true
         )
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") },
-            visualTransformation = PasswordVisualTransformation()
+            visualTransformation = PasswordVisualTransformation(),
+            singleLine = true
         )
         OutlinedTextField(
             value = confirmPassword,
             onValueChange = { confirmPassword = it },
             label = { Text("Confirm Password") },
-            visualTransformation = PasswordVisualTransformation()
+            visualTransformation = PasswordVisualTransformation(),
+            singleLine = true
         )
-        Button(onClick = { onNavigateToLogin(username) }) {
+        if(password != confirmPassword) {
+            Text(
+                text = "Password and Confirm Password must be the same",
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
+        Button(
+            onClick = { viewModel.signUp(username, email, password, context, onNavigateToLogin) },
+            enabled = username.isNotBlank() && email.isNotBlank() && password.isNotBlank() && confirmPassword.isNotBlank() && password == confirmPassword
+        ) {
             Text("Sign Up")
         }
         TextButton(onClick = { onNavigateToLogin("") }) {
             Text("or Login", textDecoration = TextDecoration.Underline)
+        }
+        if (uiState.isLoading) {
+            CircularProgressIndicator()
         }
     }
 }
