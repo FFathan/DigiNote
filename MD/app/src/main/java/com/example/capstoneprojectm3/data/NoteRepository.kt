@@ -35,7 +35,7 @@ class NoteRepository {
     }
 
     suspend fun getAllNotes() {
-        delay(2000)
+//        delay(2000)
         homeNoteList = apiService.getAllNotes().noteList
         Log.d("getAllNotes()", "noteList: $homeNoteList")
         isHomeRequireUpdate = false

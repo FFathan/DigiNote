@@ -42,7 +42,7 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 @Composable
 fun AddNote(
     onNavigateToHome: () -> Unit = {},
-    onNavigateToDetails: () -> Unit = {},
+    onNavigateToDetails: (noteId: String) -> Unit = {},
     viewModel: AddNoteViewModel = viewModel(
         factory = ViewModelFactory(
             Injection.provideRepository(),
@@ -51,6 +51,7 @@ fun AddNote(
 ) {
     var title by rememberSaveable { mutableStateOf("") }
     var isImageCaptured by rememberSaveable { mutableStateOf(false) }
+    val isAdding by viewModel.isAdding.collectAsState()
 
 
     val context = LocalContext.current
@@ -105,7 +106,9 @@ fun AddNote(
 
         content = { innerPadding ->
             Column(
-                modifier = Modifier.padding(innerPadding).fillMaxSize(),
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ){
@@ -119,9 +122,12 @@ fun AddNote(
                     onClick = {
                         viewModel.addNote(uri, title, context, onNavigateToDetails)
                     },
-                    enabled = title.isNotEmpty() && isImageCaptured
+                    enabled = title.isNotEmpty() && isImageCaptured && !isAdding
                 ) {
                     Text("Create New Note")
+                }
+                if(isAdding) {
+                    CircularProgressIndicator()
                 }
 
                 if (capturedImageUri.path?.isNotEmpty() == true) {
