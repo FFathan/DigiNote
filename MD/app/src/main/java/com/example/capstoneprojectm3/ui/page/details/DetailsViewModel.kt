@@ -27,11 +27,24 @@ class DetailsViewModel(private val repository: NoteRepository, private val prefe
         )
     }
 
-    fun deleteNote(noteId: String, onNavigateToHome: () -> Unit) {
+    fun deleteNote(noteId: String, context: Context, onNavigateToHome: () -> Unit) {
         viewModelScope.launch {
-            preferences.getAuthToken().collect { authToken ->
-                repository.mockDeleteNote(authToken, noteId)
+            _uiState.value = DetailsUiState(isLoading = true)
+
+            val deleteNoteResponse = repository.deleteNote(noteId)
+            val isDeleted = deleteNoteResponse.success
+
+            if(isDeleted) {
+                _uiState.value = DetailsUiState(
+                    isLoading = false, isSuccess = true,
+                    noteDetails = repository.homeNoteList.find{ it.noteId == noteId} ?: Note())
+                Toast.makeText(context, "Note Deleted", Toast.LENGTH_SHORT).show()
                 onNavigateToHome()
+            } else {
+                _uiState.value = DetailsUiState(
+                    isLoading = false, isFailed = true,
+                    noteDetails = repository.homeNoteList.find{ it.noteId == noteId} ?: Note())
+                Toast.makeText(context, "Delete Failed", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -58,8 +71,8 @@ class DetailsViewModel(private val repository: NoteRepository, private val prefe
 }
 
 data class DetailsUiState (
-    var isLoading: Boolean = false,
-    var isSuccess: Boolean = false,
-    var isFailed: Boolean = false,
+    val isLoading: Boolean = false,
+    val isSuccess: Boolean = false,
+    val isFailed: Boolean = false,
     val noteDetails: Note = Note()
 )

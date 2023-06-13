@@ -110,6 +110,22 @@ class NoteRepository {
         }
     }
 
+    suspend fun deleteNote(noteId: String): DeleteNoteResponse {
+        var deleteResponse: DeleteNoteResponse
+        return try{
+            deleteResponse = apiService.deleteNote(noteId)
+            deleteLocalHomeNoteById(noteId)
+            deleteResponse
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            deleteResponse = DeleteNoteResponse(false, "Http Error: ${errorBody?.extractMessageFromJson()}")
+            deleteResponse
+        } catch (e: Exception) {
+            deleteResponse = DeleteNoteResponse(false, "Delete Note Failed")
+            deleteResponse
+        }
+    }
+
     private fun deleteLocalHomeNoteById(noteId: String) {
         homeNoteList = homeNoteList.filter { it.noteId != noteId }
     }

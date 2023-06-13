@@ -84,6 +84,10 @@ class MockApiService : ApiService {
         return DeleteNoteResponse(false, "deleteNote succeed")
     }
 
+    override suspend fun deleteNote(noteId: String): DeleteNoteResponse {
+        return DeleteNoteResponse(false, "deleteNote succeed")
+    }
+
     private fun getMockHomeNoteList(): List<Note> {
         val title = "Note Title"
         val date = "DD/MM/YYYY 12:34:56"

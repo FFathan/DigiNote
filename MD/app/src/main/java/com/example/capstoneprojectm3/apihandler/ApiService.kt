@@ -67,4 +67,9 @@ interface ApiService {
         @Query("authToken") authToken: String,
         @Query("idNote") noteId: String,
     ): DeleteNoteResponse
+
+    @DELETE("notes/delete/{noteId}")
+    suspend fun deleteNote(
+        @Path("noteId") noteId: String,
+    ): DeleteNoteResponse
 }
