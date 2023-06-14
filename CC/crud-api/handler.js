@@ -41,7 +41,7 @@ const createNoteHandler = async (req, res) => {
     const formData = new FormData()
     formData.append('image', req,file.buffer, req.file.originalname)
 
-    const response = await axios.post('https://modelml-ukvty4oaya-et.a.run.app/predict', formData,{
+    const response = await axios.post('https://yout-ml-model/post', formData,{
       headers: {'Content-Type' : 'multipart/form-data'}
     })
     res.json({prediction: response.data.prediction})
