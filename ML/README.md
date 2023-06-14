@@ -21,7 +21,7 @@ All the requirements can be installed by running `pip install -r requirements.tx
 
 The dataset used in this project is the [Handwritting Recognition] (https://www.kaggle.com/landlord/handwriting-recognition) dataset from Kaggle. The dataset contains 206,799 first names and 207,024 surnames in total. The data was divided into a training set (331,059), testing set (41,382), and validation set (41,382) respectively.
 
-<p align="center"><img src ="doc/dataset_preview.png?raw=true" height="340" alt="Dataset Preview" /></p>
+<p align="center"><img src ="doc/dataset_preview.png?raw=true" height="212" alt="Dataset Preview" /></p>
 
 Words images contains characters A-Z in uppercase, and some special characters like space, dash and aphostrope. Images are 256 pixels in width and 64 pixels in height, they are grayscale and anti-aliased. The images are centered in the middle of the image.
 
