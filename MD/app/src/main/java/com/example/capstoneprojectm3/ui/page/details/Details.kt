@@ -3,9 +3,6 @@ package com.example.capstoneprojectm3.ui.page.details
 import android.content.Context
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -13,7 +10,6 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
@@ -29,7 +25,6 @@ import com.example.capstoneprojectm3.DatastorePreferences
 import com.example.capstoneprojectm3.ViewModelFactory
 import com.example.capstoneprojectm3.di.Injection
 import com.example.capstoneprojectm3.ui.component.DetailsTopBar
-import com.example.capstoneprojectm3.ui.data.Note
 import com.example.capstoneprojectm3.ui.theme.CapstoneProjectM3Theme
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "login")
@@ -53,8 +48,6 @@ fun Details(
 
     var updatedTitle by rememberSaveable { mutableStateOf("") }
     if(updatedTitle == "") updatedTitle = uiState.noteDetails.title
-    var updatedDate by rememberSaveable { mutableStateOf("") }
-    if(updatedDate == "") updatedDate = uiState.noteDetails.date
     var updatedDescription by rememberSaveable { mutableStateOf("") }
     if(updatedDescription == "") updatedDescription = uiState.noteDetails.description
 
@@ -101,9 +94,11 @@ fun Details(
             }
             if(selectedTabIndex == 0) {
                 Box {
-                    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+                    Column(modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp)) {
                         Text(
-                            text = "Created at: $updatedDate",
+                            text = "Last updated at: ${note.updated}",
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(start = 16.dp, bottom = 4.dp),
@@ -150,7 +145,9 @@ fun Details(
             }
             if(selectedTabIndex == 1) {
                 if(isLoadingImage) {
-                    CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 16.dp))
+                    CircularProgressIndicator(modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(top = 16.dp))
                 }
                 AsyncImage(
                     model = note.imageUrl,

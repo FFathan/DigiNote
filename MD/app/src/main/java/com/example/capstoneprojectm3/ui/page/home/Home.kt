@@ -94,7 +94,7 @@ fun Home(
                     items(noteList){note ->
                         NoteCard(
                             note.title,
-                            note.date,
+                            note.updated,
                             note.description,
                             modifier = Modifier.clickable(onClick = { onNavigateToDetails(note.noteId) })
                         )

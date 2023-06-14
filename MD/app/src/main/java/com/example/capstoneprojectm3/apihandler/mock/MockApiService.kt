@@ -3,7 +3,6 @@ package com.example.capstoneprojectm3.apihandler.mock
 import com.example.capstoneprojectm3.apihandler.*
 import com.example.capstoneprojectm3.ui.data.Note
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import kotlin.random.Random
@@ -46,7 +45,7 @@ class MockApiService : ApiService {
         return CreateNoteResponse(false, "createNote succeed", Note(
             noteId = "1",
             title = "Note 1",
-            date = "08/06/2023 01:23:45",
+            updated = "08/06/2023 01:23:45",
             description = "description"
         ))
     }
@@ -62,7 +61,7 @@ class MockApiService : ApiService {
         return EditNoteResponse(false, "editNote succeed", Note(
             noteId = "1",
             title = "Note 1",
-            date = "08/06/2023 01:23:45",
+            updated = "08/06/2023 01:23:45",
             description = "description"
         ))
     }
@@ -75,7 +74,7 @@ class MockApiService : ApiService {
         return EditNoteResponse(false, "editNote succeed", Note(
             noteId = "1",
             title = "Note 1",
-            date = "08/06/2023 01:23:45",
+            updated = "08/06/2023 01:23:45",
             description = "description"
         ))
     }
@@ -102,7 +101,7 @@ class MockApiService : ApiService {
             val note = Note(
                 noteId = id.toString(),
                 title = "$title $id",
-                date = date,
+                updated = date,
                 description = descriptionVariation
             )
             listNoteExample.add(note)
