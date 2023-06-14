@@ -34,8 +34,7 @@ Training can be done much faster with GPU support.
 
 The model architecture is shown in the figure below. The model consists of 3 CNN layers, 2 Bi-RNN layers, and 1 CTC layer. The input of the model is a 64x256 grayscale image. The output of the model is a sequence of characters.
 
-![download (1)](https://github.com/FFathan/DigiNote/assets/41849172/d1c76e0b-ce00-4ccb-aa1a-1b286511fe84)
-
+![model_structure](https://github.com/FFathan/DigiNote/assets/41849172/dbeda1f1-074b-43dd-b68e-c145a9d25be5)
 
 
 ## Results
