@@ -83,6 +83,8 @@ class HomeViewModel(private val repository: NoteRepository, private val preferen
         viewModelScope.launch {
             preferences.setLoginStatus(false)
             repository.unauthorizeApiService()
+            repository.homeNoteList = listOf()
+            repository.isHomeRequireUpdate = true
             onNavigateToLogin()
         }
     }
