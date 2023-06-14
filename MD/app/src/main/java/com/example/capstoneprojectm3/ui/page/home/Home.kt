@@ -50,7 +50,7 @@ fun Home(
         if(!viewModel.isRepositoryAuthorized()) viewModel.authorizeRepository()
         viewModel.refreshState()
     }
-    if(viewModel.isHomeRequireUpdate()) viewModel.fetchNoteList()
+    if(viewModel.isHomeRequireUpdate() && viewModel.isRepositoryAuthorized()) viewModel.fetchNoteList()
 
     val uiState by viewModel.uiState.collectAsState()
     val noteList = uiState.noteList
