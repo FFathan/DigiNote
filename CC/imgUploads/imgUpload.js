@@ -3,16 +3,16 @@ const {Storage} = require('@google-cloud/storage')
 const fs = require('fs')
 const path = require('path');
 
-const pathKey = path.resolve('./testing-diginote-2023-a9ca4c63bb0a.json')
+const pathKey = path.resolve('./to-your-service-key-name')
 
 // TODO: Sesuaikan konfigurasi Storage
 const gcs = new Storage({
-    projectId: 'diginote-final',
+    projectId: 'your-project-name',
     keyFilename: pathKey
 })
 
 // TODO: Tambahkan nama bucket yang digunakan
-const bucketName = 'digi-photos-bucket'
+const bucketName = 'your-bucket-name'
 const bucket = gcs.bucket(bucketName)
 
 function getPublicUrl(filename) {
