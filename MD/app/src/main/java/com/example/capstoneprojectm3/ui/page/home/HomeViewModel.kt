@@ -1,6 +1,7 @@
 package com.example.capstoneprojectm3.ui.page.home
 
 import android.util.Log
+import androidx.compose.material.icons.Icons
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.capstoneprojectm3.DatastorePreferences
@@ -12,10 +13,18 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: NoteRepository, private val preferences: DatastorePreferences) : ViewModel() {
-    private val _uiState: MutableStateFlow<HomeUiState> =
-        MutableStateFlow(HomeUiState())
+    private val _uiState: MutableStateFlow<HomeUiState> = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState>
         get() = _uiState
+
+    private val _isSearching: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isSearching: StateFlow<Boolean>
+        get() = _isSearching
+    private val _searchQuery: MutableStateFlow<String> = MutableStateFlow("")
+    val searchQuery: StateFlow<String>
+        get() = _searchQuery
+
+
 
     init{
         Log.d("HomeViewModel", "")
@@ -38,9 +47,6 @@ class HomeViewModel(private val repository: NoteRepository, private val preferen
 
     fun fetchNoteList() {
         viewModelScope.launch {
-//            preferences.getAuthToken().collect{ authToken ->
-//                repository.mockGetAllNotes(authToken, 1, 1)
-//            }
             _uiState.value = HomeUiState(
                 isLoading = true,
             )
@@ -65,11 +71,11 @@ class HomeViewModel(private val repository: NoteRepository, private val preferen
         repository.isHomeRequireUpdate = isRequireUpdate
     }
 
-    fun refreshState(){
+    fun refreshState(noteList: List<Note> = repository.homeNoteList){
         _uiState.value = HomeUiState(
             isLoading = false,
             isSuccess = true,
-            noteList = repository.homeNoteList
+            noteList = noteList
         )
     }
 
@@ -78,6 +84,23 @@ class HomeViewModel(private val repository: NoteRepository, private val preferen
             preferences.setLoginStatus(false)
             repository.unauthorizeApiService()
             onNavigateToLogin()
+        }
+    }
+
+    fun onSearchQueryChanged(searchQuery: String) {
+        _searchQuery.value = searchQuery
+        refreshState(repository.homeNoteList.filter {
+            it.title.contains(searchQuery) || it.description.contains(searchQuery)
+        })
+    }
+
+    fun setIsSearching(isSearching: Boolean, isRefreshState: Boolean = false) {
+        _isSearching.value = isSearching
+        if(!isSearching){
+            _searchQuery.value = ""
+        }
+        if(isRefreshState){
+            refreshState()
         }
     }
 }

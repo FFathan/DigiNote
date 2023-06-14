@@ -145,7 +145,7 @@ fun AddNote(
 
 fun Context.createImageFile(): File {
     // Create an image file name
-    val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+    val timeStamp = SimpleDateFormat("yyyy-MM-dd HH-mm-ss", Locale.getDefault()).format(Date())
     val imageFileName = "JPEG_" + timeStamp + "_"
     val image = File.createTempFile(
         imageFileName, /* prefix */

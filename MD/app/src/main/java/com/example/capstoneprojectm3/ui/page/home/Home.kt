@@ -12,10 +12,8 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,8 +53,17 @@ fun Home(
     val uiState by viewModel.uiState.collectAsState()
     val noteList = uiState.noteList
 
+    val isSearching by viewModel.isSearching.collectAsState()
+    val searchQuery by viewModel.searchQuery.collectAsState()
+
     Scaffold(
-        topBar = { HomeTopBar(onLogout = { viewModel.logout(onNavigateToLogin) }) },
+        topBar = { HomeTopBar(
+            onLogout = { viewModel.logout(onNavigateToLogin) },
+            searchQuery = searchQuery,
+            isSearching = isSearching,
+            onSearchQueryChanged = { viewModel.onSearchQueryChanged(it) },
+            setIsSearching = { isSearching ->  viewModel.setIsSearching(isSearching, isRefreshState = true) }
+        ) },
         floatingActionButton = {
             if(uiState.isSuccess){
                 FloatingActionButton(
@@ -96,7 +103,10 @@ fun Home(
                             note.title,
                             note.updated,
                             note.description,
-                            modifier = Modifier.clickable(onClick = { onNavigateToDetails(note.noteId) })
+                            modifier = Modifier.clickable(onClick = {
+                                onNavigateToDetails(note.noteId)
+                                viewModel.setIsSearching(false)
+                            })
                         )
                     }
                 }
