@@ -38,17 +38,17 @@ The model architecture is shown in the figure below. The model consists of 3 CNN
 
 <p align="center"><img src ="doc/model_structure.png?raw=true" height="340" alt="Model Structure" /></p>
 
-
 ## Results
 
 The model achieved 76% accuracy on character level and 60% accuracy on word level. The model is trained with only 10% of the total datasets, so the accuracy can be improved by training with more data.
+
+As for now the model is only trained with uppercase characters and some special characters. The model can be improved by training with more variety of words, more characters, and more languages. The recognition is dependent of contour detection, it's not optimized for detecting words with different font style and paper or background with lines.
 
 ## Methods for extracting text from image
 
 There are few steps before we can extract the text from the image. First, we need to pre-process the image. The pre-processing steps are as follows:
 
 <p align="center"><img src ="doc/processing-image.png?raw=true" height="400" alt="Dataset Preview" /></p>
-
 
 1. Cropping the image to detect the page of the image.
 2. Apply adaptive thresholding to the image.
@@ -62,6 +62,9 @@ There are few steps before we can extract the text from the image. First, we nee
 - Train the model with more data, bigger dataset.
 - Use a dataset with more variety of words, more characters, and more languages.
 - Use better pre-processing function for feeding the data into the model. (Using batch sizing instead of feeding the data one by one).
+- Use better word segmentation function to detect the words in the image.
+- Use better thresholding filter function to detect the words in the image.
+- Use better bounding box function to detect the words in the image.
 
 ## References for code, dataset, methods approach
 
