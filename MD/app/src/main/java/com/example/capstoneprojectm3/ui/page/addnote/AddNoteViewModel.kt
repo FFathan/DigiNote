@@ -40,9 +40,11 @@ class AddNoteViewModel(private val repository: NoteRepository, private val prefe
                 val requestFile = file.asRequestBody("image/jpg".toMediaType())
                 val imagePart = MultipartBody.Part.createFormData("image", file.name, requestFile)
 
+                val description = repository.getDescription(imagePart).toRequestBody("text/plain".toMediaType())
                 val noteResponse = repository.addNote(
                     imagePart,
-                    requestTitle
+                    requestTitle,
+                    description
                 )
                 val isNoteAdded = !noteResponse.error
                 if(isNoteAdded) {
@@ -51,8 +53,11 @@ class AddNoteViewModel(private val repository: NoteRepository, private val prefe
                     onNavigateToDetails(noteResponse.note.noteId)
                 }
             } catch (e: HttpException) {
-                val errorBody = e.response()?.errorBody()?.string()
-                Toast.makeText(context, "Note Added Failed: ${errorBody?.extractMessageFromJson()}", Toast.LENGTH_LONG).show()
+//                val errorBody = e.response()?.errorBody()?.string()
+//                Toast.makeText(context, "Note Added Failed: ${errorBody?.extractMessageFromJson()}", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Note Added Failed: HTTP Error", Toast.LENGTH_LONG).show()
+            } catch (e: java.net.SocketTimeoutException) {
+                Toast.makeText(context, "Note Added Failed: Takes Too Long Time", Toast.LENGTH_LONG).show()
             } catch (e: Exception) {
                 Toast.makeText(context, "Note Added Failed", Toast.LENGTH_LONG).show()
             }

@@ -1,5 +1,6 @@
 package com.example.capstoneprojectm3.apihandler
 
+import com.google.gson.annotations.SerializedName
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
@@ -43,6 +44,25 @@ interface ApiService {
         @Part image: MultipartBody.Part,
         @Part("title") title: RequestBody,
     ): CreateNoteResponse
+
+    @Multipart
+    @POST("notes")
+    suspend fun createNote(
+        @Part image: MultipartBody.Part,
+        @Part("title") title: RequestBody,
+        @Part("description") description: RequestBody,
+    ): CreateNoteResponse
+
+    @Multipart
+    @POST("predict")
+    suspend fun getDescription(
+        @Part image: MultipartBody.Part,
+    ): GetDescriptionResponse
+
+    data class GetDescriptionResponse(
+        @field:SerializedName("predicted_paragraph")
+        val description: String
+    )
 
     @FormUrlEncoded
     @POST("notes/edit")

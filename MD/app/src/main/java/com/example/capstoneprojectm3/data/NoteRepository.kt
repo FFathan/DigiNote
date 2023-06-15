@@ -52,6 +52,13 @@ class NoteRepository {
         return apiService.createNote(imagePart, title)
     }
 
+    suspend fun getDescription(imagePart: MultipartBody.Part): String {
+        return ApiConfig.getMLApiService().getDescription(imagePart).description
+    }
+    suspend fun addNote(imagePart: MultipartBody.Part, title: RequestBody, description: RequestBody): CreateNoteResponse {
+        return apiService.createNote(imagePart, title, description)
+    }
+
     fun addLocalHomeNote(note: Note) {
         homeNoteList = listOf(note) + homeNoteList
     }

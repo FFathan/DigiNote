@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 class ApiConfig {
     companion object{
@@ -16,6 +17,9 @@ class ApiConfig {
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30,TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
                 .build()
 
             val retrofit = getRetrofit(client, BASE_URL)
@@ -40,6 +44,9 @@ class ApiConfig {
                         .build()
                     chain.proceed(requestHeaders)
                 })
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30,TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
                 .build()
 
             val retrofit = getRetrofit(client, BASE_URL)
@@ -63,6 +70,19 @@ class ApiConfig {
                 .build()
         }
 
+        fun getMLApiService(): ApiService {
+            val ML_BASE_URL = "https://apit-ukvty4oaya-as.a.run.app/"
+            val loggingInterceptor = getLoggingInterceptor()
 
+            val client = OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30,TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .build()
+
+            val retrofit = getRetrofit(client, ML_BASE_URL)
+            return retrofit.create(ApiService::class.java)
+        }
     }
 }
