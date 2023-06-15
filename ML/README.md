@@ -65,6 +65,9 @@ There are few steps before we can extract the text from the image. First, we nee
 
 ## References for code, dataset, methods approach
 
-- [Handwritten Text Recognition using TensorFlow] (https://towardsdatascience.com/handwritten-text-recognition-using-tensorflow-2-0-f4352b7afe16)
-- [Handwritten Text Recognition with TensorFlow] (https://towardsdatascience.com/handwritten-text-recognition-with-tensorflow-2-0-f4cdcbccfa7b)
-- [Handwritten Text Recognition using Deep Learning] (https://towardsdatascience.com/handwritten-text-recognition-using-deep-learning-8a782c93c2fa)
+- [Handwritten Text Recognition using TensorFlow](https://towardsdatascience.com/handwritten-text-recognition-using-tensorflow-2-0-f4352b7afe16)
+- [Handwritten Text Recognition using Deep Learning](https://towardsdatascience.com/handwritten-text-recognition-using-deep-learning-8a782c93c2fa)
+- [Text Recognition With TensorFlow and CTC network](https://pylessons.com/ctc-text-recognition)
+- [Handwritting characters database](https://github.com/sueiras/handwritting_characters_database)
+- [Handwritting OCR](https://github.com/Breta01/handwriting-ocr)
+- [Handwritting Text Recognition](https://medium.com/@mohini.1893/handwriting-text-recognition-236b33c5caa4)
