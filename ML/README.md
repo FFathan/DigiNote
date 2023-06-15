@@ -75,3 +75,4 @@ NOTE: If during testing encountered error or fail, thats because the pre-process
 - [Handwritting characters database](https://github.com/sueiras/handwritting_characters_database)
 - [Handwritting OCR](https://github.com/Breta01/handwriting-ocr)
 - [Handwritting Text Recognition](https://medium.com/@mohini.1893/handwriting-text-recognition-236b33c5caa4)
+- [OpenCV thresholding filter](https://stackoverflow.com/questions/32913157/how-to-get-magic-color-effect-like-cam-scanner-using-opencv)
