@@ -36,7 +36,14 @@ class NoteRepository {
 
     suspend fun getAllNotes() {
 //        delay(2000)
-        homeNoteList = apiService.getAllNotes().noteList
+        homeNoteList = apiService.getAllNotes().noteList.map { note ->
+            if (note.description == null) {
+                note.copy(description = "")
+            } else {
+                note
+            }
+        }
+
         Log.d("getAllNotes()", "noteList: $homeNoteList")
         isHomeRequireUpdate = false
     }
