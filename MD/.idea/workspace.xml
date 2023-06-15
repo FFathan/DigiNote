@@ -9,14 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="fixing bug: changing null on description to empty string if null is received from cloud getAllNotes">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/outline_photo_library_24.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Adding new FAB for gallery">
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/addnote/AddNote.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/ui/page/addnote/AddNote.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -477,13 +470,6 @@
       <option name="presentableId" value="Default" />
       <updated>1685177341011</updated>
     </task>
-    <task id="LOCAL-00005" summary="Implementing navigations between pages. But, DetailsTopBar.kt onNavigateToHome still doesn't work">
-      <created>1685453701430</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1685453701430</updated>
-    </task>
     <task id="LOCAL-00006" summary="committing .gitignore">
       <created>1685465657966</created>
       <option name="number" value="00006" />
@@ -820,7 +806,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686863087918</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Adding new FAB for gallery">
+      <created>1686863400790</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1686863400790</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -850,7 +843,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Setting preferences login status to false when user logged out." />
     <MESSAGE value="Setting preferences login status to false when user logged out.&#10;Navigate user to Home when preferences login status is true." />
     <MESSAGE value="Implemented saving fetched homeNoteList on repository." />
     <MESSAGE value="Implemented DetailsViewModel" />
@@ -875,6 +867,7 @@
     <MESSAGE value="Changing BASE_URL and adding condition on viewModel.fetchNoteList() for the first time" />
     <MESSAGE value="Showing the note's updated date" />
     <MESSAGE value="fixing bug: changing null on description to empty string if null is received from cloud getAllNotes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing bug: changing null on description to empty string if null is received from cloud getAllNotes" />
+    <MESSAGE value="Adding new FAB for gallery" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding new FAB for gallery" />
   </component>
 </project>

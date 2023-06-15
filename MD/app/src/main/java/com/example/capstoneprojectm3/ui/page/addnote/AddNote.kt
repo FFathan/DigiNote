@@ -71,6 +71,16 @@ fun AddNote(
             }
         }
 
+    val galleryLauncher = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { imageUri: Uri? ->
+//        imageUri?.let { onImageSelected(it) }
+        if (imageUri != null) {
+            capturedImageUri = imageUri
+            isImageCaptured = true
+        }
+
+    }
+
+
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isPermissionAllowed ->
@@ -89,7 +99,7 @@ fun AddNote(
                 Row(modifier = Modifier.padding(80.dp)) {
                     FloatingActionButton(
                         onClick = {
-
+                            galleryLauncher.launch("image/*")
                         },
                         modifier = Modifier.padding(end = 16.dp) ) {
                         Icon(painterResource(id = com.example.capstoneprojectm3.R.drawable.outline_photo_library_24), "Get image from gallery")
@@ -131,7 +141,7 @@ fun AddNote(
                 )
                 Button(
                     onClick = {
-                        viewModel.addNote(uri, title, context, onNavigateToDetails)
+                        viewModel.addNote(capturedImageUri, title, context, onNavigateToDetails)
                     },
                     enabled = title.isNotEmpty() && isImageCaptured && !isAdding
                 ) {
