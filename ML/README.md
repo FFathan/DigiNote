@@ -47,7 +47,7 @@ The model achieved 76% accuracy on character level and 60% accuracy on word leve
 
 There are few steps before we can extract the text from the image. First, we need to pre-process the image. The pre-processing steps are as follows:
 
-<p align="center"><img src ="doc/dataset_preview.png?raw=true" height="400" alt="Dataset Preview" /></p>
+<p align="center"><img src ="doc/processing-image.png?raw=true" height="400" alt="Dataset Preview" /></p>
 
 
 1. Cropping the image to detect the page of the image.
