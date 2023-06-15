@@ -58,7 +58,7 @@ There are few steps before we can extract the text from the image. First, we nee
 6. Finally, feed the pre-processed image into the model to begin the recognition process.
 
 ## What can be improved
-
+[NOTE: if during testing encountered error or fail, thats because the pre-processing image functions (ex: contour detect, bound boxing, thresholding filter) are not very good. It still need some work to get perfect image before it feeded to the model. The model it self works fine. Just need better pre-processing functions.]
 - Train the model with more data, bigger dataset.
 - Use a dataset with more variety of words, more characters, and more languages.
 - Use better pre-processing function for feeding the data into the model. (Using batch sizing instead of feeding the data one by one).
