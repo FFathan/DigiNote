@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$PROJECT_DIR$/../../AndroidSDK/icons/material/materialicons/logout/baseline_logout_24.xml" />
+                                      <entry key="url" value="file:/$PROJECT_DIR$/../../AndroidSDK/icons/material/materialiconsoutlined/photo_library/outline_photo_library_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,7 +28,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="baseline_logout_24" />
+                            <entry key="outputName" value="outline_photo_library_24" />
                             <entry key="sourceFile" value="C:\ProgrammingFiles\AndroidProjects\CapstoneProjectM3" />
                           </map>
                         </option>
