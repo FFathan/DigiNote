@@ -44,7 +44,7 @@ The model achieved 76% accuracy on character level and 60% accuracy on word leve
 
 As for now the model is only trained with uppercase characters and some special characters. The model can be improved by training with more variety of words, more characters, and more languages. The recognition is dependent of contour detection, it's not optimized for detecting words with different font style and paper or background with lines.
 
-## Methods for extracting text from image
+## Methods for extracting text from image (app implementation)
 
 There are few steps before we can extract the text from the image. First, we need to pre-process the image. The pre-processing steps are as follows:
 
@@ -58,7 +58,8 @@ There are few steps before we can extract the text from the image. First, we nee
 6. Finally, feed the pre-processed image into the model to begin the recognition process.
 
 ## What can be improved
-[NOTE: if during testing encountered error or fail, thats because the pre-processing image functions (ex: contour detect, bound boxing, thresholding filter) are not very good. It still need some work to get perfect image before it feeded to the model. The model it self works fine. Just need better pre-processing functions.]
+NOTE: If during testing encountered error or fail, thats because the pre-processing image functions (ex: contour detect, bound boxing, thresholding filter) are not very good. It still need some work to get perfect image before it feeded to the model. The model it self works fine. Just need better pre-processing functions. So if captured image has another object besides the text, it will likely detect it as contour and model would not be able to read it. (gives an error exception).
+
 - Train the model with more data, bigger dataset.
 - Use a dataset with more variety of words, more characters, and more languages.
 - Use better pre-processing function for feeding the data into the model. (Using batch sizing instead of feeding the data one by one).
