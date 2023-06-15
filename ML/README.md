@@ -19,7 +19,7 @@ All the requirements can be installed by running `pip install -r requirements.tx
 
 ## Dataset
 
-The dataset used in this project is the [Handwritting Recognition] (https://www.kaggle.com/landlord/handwriting-recognition) dataset from Kaggle. The dataset contains 206,799 first names and 207,024 surnames in total. The data was divided into a training set (331,059), testing set (41,382), and validation set (41,382) respectively.
+The dataset used in this project is the [Handwritting Recognition](https://www.kaggle.com/landlord/handwriting-recognition) dataset from Kaggle. The dataset contains 206,799 first names and 207,024 surnames in total. The data was divided into a training set (331,059), testing set (41,382), and validation set (41,382) respectively.
 
 <p align="center"><img src ="doc/dataset_preview.png?raw=true" height="212" alt="Dataset Preview" /></p>
 
