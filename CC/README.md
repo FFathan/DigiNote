@@ -20,5 +20,35 @@ npm install
 
 sudo apt-get install build-essential
 
-> njhfahdjhf
+--------------------------------------------------------
+Methods:
+
+Register Accout
+URL: /register
+Method: POST
+Request Body :
+-username as varchar
+-email as varchar
+password as varchar, must be at least 8 characters, Uppercase, number and special characters
+
+Response
+{
+	“error” : false,
+	“message” : “Account registered successfully”
+}
+
+LOGIN
+URL: /login
+Method: post
+Request Body:
+usernameORemail as String
+password as String
+
+Response
+{
+	“error” : “false”,
+	“message” : “Login Succeed”
+  “token” : “randomgeneratenumbersandalphabet”
+}
+
 
