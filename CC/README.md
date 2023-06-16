@@ -39,8 +39,11 @@ Response
 
 LOGIN
 URL: /login
+
 Method: post
+
 Request Body:
+
 usernameORemail as String
 password as String
 
@@ -48,7 +51,9 @@ Response
 {
 	“error” : “false”,
 	“message” : “Login Succeed”
-  “token” : “randomgeneratenumbersandalphabet”
+    “token” : “randomgeneratenumbersandalphabet”
 }
+
+
 
 
