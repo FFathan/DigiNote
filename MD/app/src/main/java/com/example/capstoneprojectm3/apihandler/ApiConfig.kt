@@ -71,7 +71,7 @@ class ApiConfig {
         }
 
         fun getMLApiService(): ApiService {
-            val ML_BASE_URL = "https://apit-ukvty4oaya-as.a.run.app/"
+            val ML_BASE_URL = "https://final-ukvty4oaya-as.a.run.app"
             val loggingInterceptor = getLoggingInterceptor()
 
             val client = OkHttpClient.Builder()
