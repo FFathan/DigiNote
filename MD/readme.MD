@@ -5,6 +5,7 @@
 - Jetpack Compose
 - AndroidX
 - Navigation
+- ViewModel
 - Retrofit
 - OkHttp3
 - Datastore Preferences
