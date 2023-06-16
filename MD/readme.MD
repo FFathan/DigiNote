@@ -7,7 +7,7 @@
 - Navigation
 - Retrofit
 - OkHttp3
-- Datastore
+- Datastore Preferences
 - Coil
 - Coroutines
 - Material 3
@@ -30,5 +30,6 @@
 ## Features
 - Capture image with Camera Intent 
 - Use image from gallery with Gallery Intent
+- Automatic Login with Datastore Preferences
 
 
