@@ -1,119 +1,200 @@
-##DigiNote REST API
-The DigiNote REST API provides endpoints for user registration, login, and managing notes. It allows users to register an account, authenticate with their credentials, create, retrieve, update, and delete notes.
+##Here is the Deployed Link
+(https://backend14-dot-diginote-final.et.r.appspot.com)
 
-#Installation
-To set up the DigiNote API locally, follow these steps:
+#Rest API for DigiNote
+-  this is an API that conclude Register, Login and also Notes handler.
+-  Please read carefully the methods in the routes.js
+-   Handler.js concludes algorithm for the methods
 
-Clone the repository:
+##Install Requirements:
+1. npm init --y (to create package.json file)
+2. npm install
 
+##How to deploy it?
+1. You can deploy it with App engine
+2. Edit your app.yaml data that include the version run time and service.
+3. Change the database variable with your own (database requirement can be seen in the databasereq.txt .
+4. Add this command to Cloud Shell if cloud shell error when you run local server.
 ```bash
-Copy code
-git clone <repository_url>
-Navigate to the project directory:
+npm cache clean --force
 ```
 ```bash
-Copy code
-cd DigiNote-API
-Install the required dependencies:
-```
-bash
-Copy code
+rm -rf node_modules
 npm install
-Deployment
-To deploy the DigiNote API, you can use the App Engine service on Google Cloud Platform. Here's a summary of the deployment process:
+```
+```bash
+sudo apt-get install build-essential
+```
 
-Configure your app.yaml file:
+--------------------------------------------------------
+Methods:
 
-Update the runtime and service fields according to your requirements.
-Set up your database:
-
-Refer to the databasereq.txt file for the database requirements.
-Update the database variable in the code with your database configuration.
-Deploy the API to Google Cloud App Engine.
-
-bash
-Copy code
-gcloud app deploy
-Access the deployed API using the provided URL.
-
-API Documentation
-Register Account
+Register Accout
 URL: /register
 Method: POST
-Request Body:
-username (string)
-email (string)
-password (string) - Must be at least 8 characters and contain uppercase letters, numbers, and special characters.
-Response:
-json
-Copy code
-{
-  "error": false,
-  "message": "Account registered successfully"
-}
-Login
-URL: /login
-Method: POST
-Request Body:
-usernameORemail (string)
-password (string)
-Response:
-json
-Copy code
-{
-  "error": "false",
-  "message": "Login Succeed",
-  "token": "randomgeneratenumbersandalphabet"
-}
-Create Note
-URL: /notes
-Method: POST
-Headers:
-Authorization: authToken
-Request Body:
-image (file) - Use form-data for uploading.
-title (string)
-Response:
-json
-Copy code
-{
-  "error": false,
-  "message": "Note Created!",
-  "note": {
-    "noteId": "id",
-    "userId": "id",
-    "title": "test dengan postman",
-    "description": "iniadalahtextcobacoba",
-    "imageUrl": "url",
-    "updated": "2023-06-13T06:29:54.418Z"
-  }
-}
-Get All Notes
-URL: /notes
-Method: GET
-Headers:
-Authorization: authToken
-Response:
-json
-Copy code
-{
-  "error": false,
-  "message": "All Notes retrieved",
-  "listnote": [
-    {
-      "noteId": "id",
-      "userId": "id",
-      "title": "cobacoba",
-      "description": "iniadalahtextcobacoba",
-      "imageUrl": "url",
-      "updated": "2023-06-12 16:13:04.836"
-    },
-    {
-      "noteId": "id",
-      "userId": "id",
-      "title": "cobacoba",
-      "description": "iniadalahtextcobacoba
+Request Body :
 
+-username as varchar
+
+-email as varchar
+
+password as varchar, must be at least 8 characters, Uppercase, number and special characters
+
+Response
+{
+	“error” : false,
+	“message” : “Account registered successfully”
+}
+
+
+
+--------------------------------------------------------------------------------
+LOGIN
+URL: /login
+
+Method: post
+
+Request Body:
+
+usernameORemail as String
+password as String
+
+Response
+{
+	“error” : “false”,
+	“message” : “Login Succeed”
+    	“token” : “randomgeneratenumbersandalphabet”
+}
+
+
+
+-------------------------------------------------------------------------------------
+CREATE NOTE
+URL : /notes
+
+Methods : post
+
+Headers.authorization
+authToken
+
+Request body
+image as file ,  pakai form data
+title as string
+
+Response
+{
+    "error": false,
+    "message": "Note Created!",
+    "note": {
+        "noteId": "id",
+        "userId": "id",
+        "title": "test dengan postman",
+        "description": "iniadalahtextcobacoba",
+        "imageUrl": "url",
+        "updated": "2023-06-13T06:29:54.418Z"
+    }
+
+
+    
+------------------------------------------------------------------------------------------------
+GetAllNotes
+URL : /notes
+Methods : get
+Headers.authorization
+authToken
+Response berhasil: 
+{
+    "error": false,
+    "message": "All Notes retrieved",
+    "listnote": []
+        {
+            "noteId": "id",
+            "userId": "id",
+            "title": "cobacoba",
+            "description": "iniadalahtextcobacoba",
+            "imageUrl": "url",
+            "updated": "2023-06-12 16:13:04.836"
+        },
+        {
+            "noteId": "id",
+            "userId": "id",
+            "title": "cobacoba",
+            "description": "iniadalahtextcobacoba",
+            "imageUrl": "url",
+            "updated": "2023-06-12 16:13:15.330"
+        },
+        {
+            "noteId": "id",
+            "userId": "id",
+            "title": "cobacoba",
+            "description": "iniadalahtextcobacoba",
+            "imageUrl": "url",
+            "updated": "2023-06-12 16:13:21.632"
+        }
+    ]
+}
+
+-----------------------------------------------------------------------------------------------------------
+GetNotesbyId
+URL : /notes/:noteId
+Methods : get
+Request params
+noteId
+Request headers authorization
+authToken
+Response berhasil
+{
+    "error": false,
+    "message": "Note retrieved",
+    "note": {
+        "noteId": "feaf01db-e644-4038-be94-ed8a77efcf8a",
+        "userId": "1",
+        "title": "cobacoba",
+        "description": "iniadalahtextcobacoba",
+        "imageUrl": "url",
+        "updated": "2023-06-12 16:13:04.836"
+    }
+}
+
+-----------------------------------------------------------------------------------------------------
+EditNote
+URL : /notes/edit/:noteId
+Method : post
+Request
+  const { noteId } = req.params
+  const { title, description } = req.body
+  const authToken = req.headers.authorization
+
+Response
+{
+    "error": false,
+    "message": "Note updated!",
+    "updatedNote": {
+        "noteId": "id",
+        "userId": "id",
+        "title": "sudahdiubah",
+        "description": "ini adalah catatan yang sudah diubah",
+        "imageUrl": "url",
+        "updated": "2023-06-13T12:30:44.042Z"
+    }
+}
+
+------------------------------------------------------------------------------------
+
+DELETE NOTE
+URL : /notes/delete/:noteId
+Method : delete
+Request: 
+  const { noteId } = req.params;
+  const authToken = req.headers.authorization;
+
+Response berhasil
+{
+    "success": true,
+    "message": "Note deleted successfully."
+}
+
+can you create read me md for this
 
 
 
