@@ -32,27 +32,4 @@ Example:
   "email": "Digi@note.id",
   "password": "HasshedPassword"
 }
-```json
-
-
-### Login
-
-Endpoint: `POST /login`
-
-login an account.
-
-#### Request Body
-
-The request body should be in JSON format or and include the following fields:
-
-- `usernameORemail` (string): The username for the new account.
-- `password` (string): The password for the new account. It must be at least 8 characters long and include at least one uppercase letter, one number, and one special character.
-
-Example:
-
-```json
-{
-  "usernameORemail": "Diginote",
-  "token": "randomGeneratedToken"
-}
 
