@@ -1,4 +1,4 @@
-## Here is the Deployed Link
+![image](https://github.com/FFathan/DigiNote/assets/125957149/90609f71-df53-4f43-8ef7-7b19c1a179e9)## Here is the Deployed Link
 (https://backend14-dot-diginote-final.et.r.appspot.com)
 # Rest API for DigiNote
 -  this is an API that conclude Register, Login and also Notes handler.
@@ -35,8 +35,8 @@ sudo apt-get install build-essential
    - username as varchar
    - email as varchar
    - password as varchar, must be at least 8 characters, Uppercase, number and special characters
-```json
 Response
+```json
 {
 	“error” : false,
 	“message” : “Account registered successfully”
@@ -51,11 +51,11 @@ Response
 3. Request Body:
    - usernameORemail as String
    - password as String
+4. Response
 ```json
-Response
 {
 	“error” : “false”,
-	“message” : “Login Succeed”
+	“message” : “Login Succeed”,
     	“token” : “randomgeneratenumbersandalphabet”
 }
 ```
@@ -70,8 +70,9 @@ Response
 4. Request body
    - image as file ,  pakai form data
    - title as string
+
+5. Response
 ```json
-Response
 {
     "error": false,
     "message": "Note Created!",
@@ -92,8 +93,8 @@ Response
 2. Methods : get
 3. Headers.authorization
    - authToken
+4. Response berhasil:
 ```json
-Response berhasil: 
 {
     "error": false,
     "message": "All Notes retrieved",
@@ -133,8 +134,8 @@ Response berhasil:
    - noteId
 4. Request headers authorization
    - authToken
+5. Response
 ```json
-Response berhasil
 {
     "error": false,
     "message": "Note retrieved",
@@ -156,8 +157,8 @@ Response berhasil
    - const { noteId } = req.params
    - const { title, description } = req.body
    - const authToken = req.headers.authorization
+4. Response
 ```json
-Response
 {
     "error": false,
     "message": "Note updated!",
@@ -179,8 +180,8 @@ Response
 3. Request:
    - const { noteId } = req.params;
    - const authToken = req.headers.authorization;
+4. Response
 ```json
-Response berhasil
 {
     "success": true,
     "message": "Note deleted successfully."
