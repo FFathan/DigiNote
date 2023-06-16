@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Changing ML API BASE URL. (and creating keysign)">
+    <list default="true" id="a11b6b84-2162-4920-bdd5-05a72835746e" name="Changes" comment="Changing ML API BASE URL.">
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -17,7 +17,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/ApiConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/apihandler/ApiConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/data/NoteRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/capstoneprojectm3/data/NoteRepository.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -498,13 +498,6 @@
       <option name="presentableId" value="Default" />
       <updated>1685177341011</updated>
     </task>
-    <task id="LOCAL-00008" summary="working AddNote onNavigateToHome">
-      <created>1685891031616</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1685891031619</updated>
-    </task>
     <task id="LOCAL-00009" summary="working Details onNavigateToHome and onDeleteNote">
       <created>1685891714271</created>
       <option name="number" value="00009" />
@@ -841,7 +834,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686911244359</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Changing ML API BASE URL.">
+      <created>1686914943186</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1686914943186</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -871,7 +871,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Implemented DetailsViewModel" />
     <MESSAGE value="Implemented moving ID from Home -&gt; Details and showing the corresponding details of selected Home note" />
     <MESSAGE value="Implemented delete note confirmation dialog" />
     <MESSAGE value="Fixing delete note confirmation dialog.&#10;Implementing Delete Note feature." />
@@ -896,6 +895,7 @@
     <MESSAGE value="Adding new FAB for gallery" />
     <MESSAGE value="Implemented using implementation of API requests to ML API and CC API" />
     <MESSAGE value="Changing ML API BASE URL. (and creating keysign)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changing ML API BASE URL. (and creating keysign)" />
+    <MESSAGE value="Changing ML API BASE URL." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changing ML API BASE URL." />
   </component>
 </project>

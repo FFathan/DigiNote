@@ -42,7 +42,7 @@ class NoteRepository {
             } else {
                 note
             }
-        }
+        }.reversed()
 
         Log.d("getAllNotes()", "noteList: $homeNoteList")
         isHomeRequireUpdate = false
