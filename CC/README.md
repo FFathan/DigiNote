@@ -1,5 +1,5 @@
-![image](https://github.com/FFathan/DigiNote/assets/125957149/90609f71-df53-4f43-8ef7-7b19c1a179e9)## Here is the Deployed Link
-(https://backend14-dot-diginote-final.et.r.appspot.com)
+###url: 
+- (https://backend14-dot-diginote-final.et.r.appspot.com)
 # Rest API for DigiNote
 -  this is an API that conclude Register, Login and also Notes handler.
 -  Please read carefully the methods in the routes.js
