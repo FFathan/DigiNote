@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken')
 const { v4: uuidv4 } = require('uuid');
 const axios = require('axios')
 const pool =  require('./database')
-const imgUpload = require('../imgUploads/imgUpload')
 secretKey = "diginote-secret"
 
 const uploadimghandler = (req,res,next) => {
