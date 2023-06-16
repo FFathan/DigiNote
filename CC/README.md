@@ -51,11 +51,37 @@ usernameORemail as String
 password as String
 
 Response
+```json
 {
 	“error” : “false”,
 	“message” : “Login Succeed”
-    “token” : “randomgeneratenumbersandalphabet”
+    	“token” : “randomgeneratenumbersandalphabet”
 }
+
+CREATE NOTE
+URL : /notes
+
+Methods : post
+
+Headers.authorization
+authToken
+
+Request body
+image as file ,  pakai form data
+title as string
+
+Response
+{
+    "error": false,
+    "message": "Note Created!",
+    "note": {
+        "noteId": "7e7f83dd-d614-4f34-a967-eeb2f7cf6353",
+        "userId": "6",
+        "title": "test dengan postman",
+        "description": "iniadalahtextcobacoba",
+        "imageUrl": "https://storage.googleapis.com/digi-photos-bucket/20230613-062953",
+        "updated": "2023-06-13T06:29:54.418Z"
+    }
 
 
 
