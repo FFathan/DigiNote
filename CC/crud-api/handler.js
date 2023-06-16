@@ -2,9 +2,7 @@ const jwt = require('jsonwebtoken')
 const { v4: uuidv4 } = require('uuid');
 const axios = require('axios')
 const pool =  require('./database')
-const imgUpload = require('../imgUploads/imgUpload')
 secretKey = "diginote-secret"
-let baseUrl = ""
 
 const uploadimghandler = (req,res,next) => {
   const data = req.body
@@ -17,69 +15,73 @@ const uploadimghandler = (req,res,next) => {
 
 
 const createNoteHandler = async (req, res) => {
-  const data = req.body;
-  const title = req.body.title
-  const authToken = req.headers.authorization;
-  const secretKey = "diginote-secret"
-
-  if (!title || !data) {
-    return res.status(400).json({ error: true, message: 'input the title and image' });
-  }
-
-  try {
-    jwt.verify(authToken, secretKey);
-  } catch (error) {
-    return res.status(401).json({ error: true, message: 'Unauthorized. Invalid token.' });
-  }
-
-  let decode = jwt.verify(authToken, secretKey);
-  let decoded = decode.userId
-  let userId = decoded.toString()
-
-  let prediction;
-  try{
-    const formData = new FormData()
-    formData.append('image', req,file.buffer, req.file.originalname)
-
-    const response = await axios.post('https://yout-ml-model/post', formData,{
-      headers: {'Content-Type' : 'multipart/form-data'}
-    })
-    res.json({prediction: response.data.prediction})
-  }catch(error){
-    console.error('prediction error', error)
-    res.status(500).json({error: 'Error reading the image'})
-  }
-  const extractedText = prediction
-  let urlphoto;
-  if (req.file && req.file.cloudStoragePublicUrl){
-    data.imageUrl = req.file.cloudStoragePublicUrl
-    urlphoto = data.imageUrl
-  }
-
-  const url = urlphoto
-  const noteId = uuidv4();
-  const note = {
-    noteId,
-    userId,
-    title,
-    description: extractedText,
-    imageUrl : url,
-    updated: new Date(),
-  };
-
-  pool.query(
-    'INSERT INTO notes (noteId, userId, title, description , imageUrl, updated) VALUES (?, ?, ?, ?, ?, ?)',
-    [noteId, userId, title, note.description, note.imageUrl, note.updated],
-    (error) => {
-      if (error) {
-        console.error('Error inserting note:', error);
-        return res.status(500).json({ error: true, message: 'An error occurred while creating the note.' });
-      }
-
-      res.status(201).json({error : false, message: 'Note Created!', note});
+    const data = req.body;
+    const title = req.body.title
+    const description = req.body.description
+    const authToken = req.headers.authorization;
+    const secretKey = "diginote-secret"
+  
+    if (!title || !data) {
+      return res.status(400).json({ error: true, message: 'input the title and image' });
     }
-  );
-};
+  
+    try {
+      jwt.verify(authToken, secretKey);
+    } catch (error) {
+      return res.status(401).json({ error: true, message: 'Unauthorized. Invalid token.' });
+    }
+  
+    let decode = jwt.verify(authToken, secretKey);
+    let decoded = decode.userId
+    let userId = decoded.toString()
+  
+  
+    const extractedText = description
+    let urlphoto;
+    if (req.file && req.file.cloudStoragePublicUrl){
+      data.imageUrl = req.file.cloudStoragePublicUrl
+      urlphoto = data.imageUrl
+    }
+  
+    const url = urlphoto
+    const noteId = uuidv4();
+    const date = new Date();
+    const options = { timeZone: 'Asia/Jakarta' };
+    
+    const dayOfWeek = date.toLocaleString('en-US', { ...options, weekday: 'long' });
+    
+    const day = date.toLocaleString('en-US', { ...options, day: 'numeric' });
+    const month = date.toLocaleString('en-US', { ...options, month: 'long' });
+    const year = date.toLocaleString('en-US', { ...options, year: 'numeric' });
+    
+    const hours = date.toLocaleString('en-US', { ...options, hour: 'numeric', hour12: false });
+    const minutes = date.toLocaleString('en-US', { ...options, minute: 'numeric' });
+    const seconds = date.toLocaleString('en-US', { ...options, second: 'numeric' });
+    
+    const formattedDateTime = `${dayOfWeek}, ${day} ${month} ${year}, ${hours}:${minutes}:${seconds}`;
+    
+    const note = {
+      noteId,
+      userId,
+      title,
+      description: extractedText,
+      imageUrl : url,
+      updated: formattedDateTime,
+    };
+  
+    pool.query(
+      'INSERT INTO notes (noteId, userId, title, description , imageUrl, updated) VALUES (?, ?, ?, ?, ?, ?)',
+      [noteId, userId, title, note.description, note.imageUrl, note.updated],
+      (error) => {
+        if (error) {
+          console.error('Error inserting note:', error);
+          return res.status(500).json({ error: true, message: 'An error occurred while creating the note.' });
+        }
+  
+        res.status(201).json({error : false, message: 'Note Created!', note});
+      }
+    );
+  };
 
 
 const getAllNoteHandler = (req,res) => {
@@ -104,7 +106,7 @@ const getAllNoteHandler = (req,res) => {
       return res.status(500).json({ error: true, message: 'An error while retrieving notes'})
     }
     if (results.length === 0){
-      return res.status(200).json({error: false, message: 'No notes yet', listnote: results})
+      return res.status(200).json({error: false, message: 'No notes yet.', listnote: results})
     }
 
     res.status(200).json({error: false, message: 'All Notes retrieved', listnote: results})
@@ -175,9 +177,22 @@ const editNoteHandler = async (req, res) => {
     updateFields.push('description = ?')
     queryParams.push(description)
   }
-
+  const date = new Date();
+  const options = { timeZone: 'Asia/Jakarta' };
+  
+  const dayOfWeek = date.toLocaleString('en-US', { ...options, weekday: 'long' });
+  
+  const day = date.toLocaleString('en-US', { ...options, day: 'numeric' });
+  const month = date.toLocaleString('en-US', { ...options, month: 'long' });
+  const year = date.toLocaleString('en-US', { ...options, year: 'numeric' });
+  
+  const hours = date.toLocaleString('en-US', { ...options, hour: 'numeric', hour12: false });
+  const minutes = date.toLocaleString('en-US', { ...options, minute: 'numeric' });
+  const seconds = date.toLocaleString('en-US', { ...options, second: 'numeric' });
+  
+  const formattedDateTime = `${dayOfWeek}, ${day} ${month} ${year}, ${hours}:${minutes}:${seconds}`;
   updateFields.push('updated = ?')
-  queryParams.push(new Date())
+  queryParams.push(formattedDateTime)
 
   queryParams.push(noteId)
   queryParams.push(userId)
@@ -211,7 +226,7 @@ const editNoteHandler = async (req, res) => {
             title,
             description,
             imageUrl: result[0].imageUrl,
-            updated: new Date()
+            updated: formattedDateTime
           }
   
           res.status(200).json({ error: false, message: 'Note updated!', updatedNote });

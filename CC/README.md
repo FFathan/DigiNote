@@ -1,34 +1,120 @@
-THIS IS API METHODS FOR DIGINOTE BACKEND
+##DigiNote REST API
+The DigiNote REST API provides endpoints for user registration, login, and managing notes. It allows users to register an account, authenticate with their credentials, create, retrieve, update, and delete notes.
 
-# Registration API Documentation
+#Installation
+To set up the DigiNote API locally, follow these steps:
 
-This document provides information on how to use the Registration API to register a new user account.
+Clone the repository:
 
-## Base URL
+```bash
+Copy code
+git clone <repository_url>
+Navigate to the project directory:
+```
+```bash
+Copy code
+cd DigiNote-API
+Install the required dependencies:
+```
+bash
+Copy code
+npm install
+Deployment
+To deploy the DigiNote API, you can use the App Engine service on Google Cloud Platform. Here's a summary of the deployment process:
 
-The base URL for all API endpoints is `https://example.com`.
+Configure your app.yaml file:
 
-## Endpoint
+Update the runtime and service fields according to your requirements.
+Set up your database:
 
-### Register a new user
+Refer to the databasereq.txt file for the database requirements.
+Update the database variable in the code with your database configuration.
+Deploy the API to Google Cloud App Engine.
 
-Endpoint: `POST /register`
+bash
+Copy code
+gcloud app deploy
+Access the deployed API using the provided URL.
 
-Registers a new user account.
-
-#### Request Body
-
-The request body should be in JSON format and include the following fields:
-
-- `username` (string): The username for the new account.
-- `email` (string): The email address for the new account.
-- `password` (string): The password for the new account. It must be at least 8 characters long and include at least one uppercase letter, one number, and one special character.
-
-Example:
-
-```json
+API Documentation
+Register Account
+URL: /register
+Method: POST
+Request Body:
+username (string)
+email (string)
+password (string) - Must be at least 8 characters and contain uppercase letters, numbers, and special characters.
+Response:
+json
+Copy code
 {
-  "username": "john_doe",
-  "email": "john.doe@example.com",
-  "password": "Password123!"
+  "error": false,
+  "message": "Account registered successfully"
 }
+Login
+URL: /login
+Method: POST
+Request Body:
+usernameORemail (string)
+password (string)
+Response:
+json
+Copy code
+{
+  "error": "false",
+  "message": "Login Succeed",
+  "token": "randomgeneratenumbersandalphabet"
+}
+Create Note
+URL: /notes
+Method: POST
+Headers:
+Authorization: authToken
+Request Body:
+image (file) - Use form-data for uploading.
+title (string)
+Response:
+json
+Copy code
+{
+  "error": false,
+  "message": "Note Created!",
+  "note": {
+    "noteId": "id",
+    "userId": "id",
+    "title": "test dengan postman",
+    "description": "iniadalahtextcobacoba",
+    "imageUrl": "url",
+    "updated": "2023-06-13T06:29:54.418Z"
+  }
+}
+Get All Notes
+URL: /notes
+Method: GET
+Headers:
+Authorization: authToken
+Response:
+json
+Copy code
+{
+  "error": false,
+  "message": "All Notes retrieved",
+  "listnote": [
+    {
+      "noteId": "id",
+      "userId": "id",
+      "title": "cobacoba",
+      "description": "iniadalahtextcobacoba",
+      "imageUrl": "url",
+      "updated": "2023-06-12 16:13:04.836"
+    },
+    {
+      "noteId": "id",
+      "userId": "id",
+      "title": "cobacoba",
+      "description": "iniadalahtextcobacoba
+
+
+
+
+
