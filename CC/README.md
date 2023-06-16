@@ -32,9 +32,9 @@ sudo apt-get install build-essential
 1. URL: /register
 2. Method: POST
 3. Request Body :
-- username as varchar
-- email as varchar
-- password as varchar, must be at least 8 characters, Uppercase, number and special characters
+   - username as varchar
+   - email as varchar
+   - password as varchar, must be at least 8 characters, Uppercase, number and special characters
 ```json
 Response
 {
@@ -45,38 +45,32 @@ Response
 
 
 --------------------------------------------------------------------------------
-LOGIN
-URL: /login
-
-Method: post
-
-Request Body:
-
-usernameORemail as String
-password as String
-
+## LOGIN
+1. URL: /login
+2. Method: post
+3. Request Body:
+   - usernameORemail as String
+   - password as String
+```json
 Response
 {
 	“error” : “false”,
 	“message” : “Login Succeed”
     	“token” : “randomgeneratenumbersandalphabet”
 }
-
+```
 
 
 -------------------------------------------------------------------------------------
-CREATE NOTE
-URL : /notes
-
-Methods : post
-
-Headers.authorization
-authToken
-
-Request body
-image as file ,  pakai form data
-title as string
-
+##CREATE NOTE
+1. URL : /notes
+2. Methods : post
+3. Headers.authorization
+   - authToken
+4. Request body
+   - image as file ,  pakai form data
+   - title as string
+```json
 Response
 {
     "error": false,
@@ -89,15 +83,16 @@ Response
         "imageUrl": "url",
         "updated": "2023-06-13T06:29:54.418Z"
     }
-
+```
 
     
 ------------------------------------------------------------------------------------------------
-GetAllNotes
-URL : /notes
-Methods : get
-Headers.authorization
-authToken
+### GetAllNotes
+1. URL : /notes
+2. Methods : get
+3. Headers.authorization
+   - authToken
+```json
 Response berhasil: 
 {
     "error": false,
@@ -129,15 +124,16 @@ Response berhasil:
         }
     ]
 }
-
+```
 -----------------------------------------------------------------------------------------------------------
-GetNotesbyId
-URL : /notes/:noteId
-Methods : get
-Request params
-noteId
-Request headers authorization
-authToken
+## GetNotesbyId
+1. URL : /notes/:noteId
+2. Methods : get
+3. Request params
+   - noteId
+4. Request headers authorization
+   - authToken
+```json
 Response berhasil
 {
     "error": false,
@@ -151,16 +147,16 @@ Response berhasil
         "updated": "2023-06-12 16:13:04.836"
     }
 }
-
+```
 -----------------------------------------------------------------------------------------------------
-EditNote
-URL : /notes/edit/:noteId
-Method : post
-Request
-  const { noteId } = req.params
-  const { title, description } = req.body
-  const authToken = req.headers.authorization
-
+### EditNote
+1. URL : /notes/edit/:noteId
+2. Method : post
+3. Request
+   - const { noteId } = req.params
+   - const { title, description } = req.body
+   - const authToken = req.headers.authorization
+```json
 Response
 {
     "error": false,
@@ -174,23 +170,22 @@ Response
         "updated": "2023-06-13T12:30:44.042Z"
     }
 }
-
+```
 ------------------------------------------------------------------------------------
 
-DELETE NOTE
-URL : /notes/delete/:noteId
-Method : delete
-Request: 
-  const { noteId } = req.params;
-  const authToken = req.headers.authorization;
-
+### DELETE NOTE
+1. URL : /notes/delete/:noteId
+2. Method : delete
+3. Request:
+   - const { noteId } = req.params;
+   - const authToken = req.headers.authorization;
+```json
 Response berhasil
 {
     "success": true,
     "message": "Note deleted successfully."
 }
-
-can you create read me md for this
+```
 
 
 
