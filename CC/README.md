@@ -51,7 +51,6 @@ usernameORemail as String
 password as String
 
 Response
-```json
 {
 	“error” : “false”,
 	“message” : “Login Succeed”
@@ -82,6 +81,106 @@ Response
         "imageUrl": "https://storage.googleapis.com/digi-photos-bucket/20230613-062953",
         "updated": "2023-06-13T06:29:54.418Z"
     }
+
+GetAllNotes
+URL : /notes
+Methods : get
+Headers.authorization
+authToken
+Response berhasil: 
+{
+    "error": false,
+    "message": "All Notes retrieved",
+    "listnote": []
+        {
+            "noteId": "feaf01db-e644-4038-be94-ed8a77efcf8a",
+            "userId": "1",
+            "title": "cobacoba",
+            "description": "iniadalahtextcobacoba",
+            "imageUrl": "https://storage.googleapis.com/digi-photos-bucket/20230612-161303",
+            "updated": "2023-06-12 16:13:04.836"
+        },
+        {
+            "noteId": "2889cf55-6345-4629-9e16-7b9d725ac949",
+            "userId": "1",
+            "title": "cobacoba",
+            "description": "iniadalahtextcobacoba",
+            "imageUrl": "https://storage.googleapis.com/digi-photos-bucket/20230612-161314",
+            "updated": "2023-06-12 16:13:15.330"
+        },
+        {
+            "noteId": "f0d9c98c-abca-4d22-8e22-cd6c572c2477",
+            "userId": "1",
+            "title": "cobacoba",
+            "description": "iniadalahtextcobacoba",
+            "imageUrl": "https://storage.googleapis.com/digi-photos-bucket/20230612-161320",
+            "updated": "2023-06-12 16:13:21.632"
+        }
+    ]
+}
+
+
+GetNotesbyId
+URL : /notes/:noteId
+Methods : get
+Request params
+noteId
+Request headers authorization
+authToken
+Response berhasil
+{
+    "error": false,
+    "message": "Note retrieved",
+    "note": {
+        "noteId": "feaf01db-e644-4038-be94-ed8a77efcf8a",
+        "userId": "1",
+        "title": "cobacoba",
+        "description": "iniadalahtextcobacoba",
+        "imageUrl": "https://storage.googleapis.com/digi-photos-bucket/20230612-161303",
+        "updated": "2023-06-12 16:13:04.836"
+    }
+}
+
+
+EditNote
+URL : /notes/edit/:noteId
+Method : post
+Request
+  const { noteId } = req.params
+  const { title, description } = req.body
+  const authToken = req.headers.authorization
+
+Response berhasil: Udah dibenerin? {sudah}
+{
+    "error": false,
+    "message": "Note updated!",
+    "updatedNote": {
+        "noteId": "1bbf2451-0db4-41e6-a59d-e8449858ac1d",
+        "userId": "6",
+        "title": "sudahdiubah",
+        "description": "ini adalah catatan yang sudah diubah",
+        "imageUrl": "https://storage.googleapis.com/digi-photos-bucket/20230613-061044",
+        "updated": "2023-06-13T12:30:44.042Z"
+    }
+}
+
+
+
+
+
+DELETE NOTE
+URL : /notes/delete/:noteId
+Method : delete
+Request: 
+  const { noteId } = req.params;
+  const authToken = req.headers.authorization;
+
+Response berhasil
+{
+    "success": true,
+    "message": "Note deleted successfully."
+}
+
 
 
 
