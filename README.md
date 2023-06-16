@@ -15,3 +15,4 @@ Bangkit Team Capstone Project
 - C038DSX3069 – David Nababan
 - C151DSX2621 – Admiral Hisyam Zidney
 
+You can read the corresponding learning paths' readme on its own folder. 
