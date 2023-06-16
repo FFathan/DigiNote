@@ -1,21 +1,21 @@
-DigiNote REST API
+##DigiNote REST API
 The DigiNote REST API provides endpoints for user registration, login, and managing notes. It allows users to register an account, authenticate with their credentials, create, retrieve, update, and delete notes.
 
-Installation
+#Installation
 To set up the DigiNote API locally, follow these steps:
 
 Clone the repository:
 
-bash
+```bash
 Copy code
 git clone <repository_url>
 Navigate to the project directory:
-
-bash
+```
+```bash
 Copy code
 cd DigiNote-API
 Install the required dependencies:
-
+```
 bash
 Copy code
 npm install
