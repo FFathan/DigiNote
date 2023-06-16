@@ -12,14 +12,15 @@ import java.util.concurrent.TimeUnit
 class ApiConfig {
     companion object{
         private const val BASE_URL : String = "https://backend14-dot-diginote-final.et.r.appspot.com/"
+        private val timeOut : Long = 50
         fun getApiService(): ApiService {
             val loggingInterceptor = getLoggingInterceptor()
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30,TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(timeOut, TimeUnit.SECONDS)
+                .readTimeout(timeOut,TimeUnit.SECONDS)
+                .writeTimeout(timeOut, TimeUnit.SECONDS)
                 .build()
 
             val retrofit = getRetrofit(client, BASE_URL)
@@ -44,9 +45,9 @@ class ApiConfig {
                         .build()
                     chain.proceed(requestHeaders)
                 })
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30,TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(timeOut, TimeUnit.SECONDS)
+                .readTimeout(timeOut,TimeUnit.SECONDS)
+                .writeTimeout(timeOut, TimeUnit.SECONDS)
                 .build()
 
             val retrofit = getRetrofit(client, BASE_URL)
@@ -71,14 +72,14 @@ class ApiConfig {
         }
 
         fun getMLApiService(): ApiService {
-            val ML_BASE_URL = "https://final-ukvty4oaya-as.a.run.app"
+            val ML_BASE_URL = "https://final2-ukvty4oaya-as.a.run.app"
             val loggingInterceptor = getLoggingInterceptor()
 
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30,TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(timeOut, TimeUnit.SECONDS)
+                .readTimeout(timeOut,TimeUnit.SECONDS)
+                .writeTimeout(timeOut, TimeUnit.SECONDS)
                 .build()
 
             val retrofit = getRetrofit(client, ML_BASE_URL)
