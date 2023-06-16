@@ -23,5 +23,12 @@
 - Home
 - Create Note
 - Note Details
-- Delete Note
-- Logout
+- Update Note (Dialog)
+- Delete Note (Dialog)
+- Logout (Dialog)
+
+## Features
+- Capture image with Camera Intent 
+- Use image from gallery with Gallery Intent
+
+
