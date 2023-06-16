@@ -39,6 +39,9 @@ Response
 	“error” : false,
 	“message” : “Account registered successfully”
 }
+
+
+
 --------------------------------------------------------------------------------
 LOGIN
 URL: /login
@@ -56,6 +59,9 @@ Response
 	“message” : “Login Succeed”
     	“token” : “randomgeneratenumbersandalphabet”
 }
+
+
+
 -------------------------------------------------------------------------------------
 CREATE NOTE
 URL : /notes
@@ -81,6 +87,9 @@ Response
         "imageUrl": "url",
         "updated": "2023-06-13T06:29:54.418Z"
     }
+
+
+    
 ------------------------------------------------------------------------------------------------
 GetAllNotes
 URL : /notes
