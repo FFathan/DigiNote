@@ -28,10 +28,11 @@ Example:
 
 ```json
 {
-  "username": "john_doe",
-  "email": "john.doe@example.com",
+  "username": "digiNote",
+  "email": "Digi@note.id",
   "password": "HasshedPassword"
 }
+```json
 
 
 ### Login
@@ -51,7 +52,7 @@ Example:
 
 ```json
 {
-  "usernameORemail": "john_doe",
+  "usernameORemail": "Diginote",
   "token": "randomGeneratedToken"
 }
 
