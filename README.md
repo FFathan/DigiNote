@@ -4,7 +4,7 @@ Bangkit Team Capstone Project
 "C23-PC665"
 
 ## Team Members
-**Application Development Engineer:**  
+**Android Application Development Engineer:**  
 - A346DKX4020 – Fathir Fathan
 
 **Machine Learning Engineers:**  
