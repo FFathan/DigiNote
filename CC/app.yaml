@@ -1,0 +1,8 @@
+runtime: nodejs16
+service: your-service-name
+
+env_variables:
+  INSTANCE_UNIX_SOCKET: /cloudsql/your-sql-instance-connection
+  DB_USER: your-sql-user
+  DB_PASS: your-database-password
+  DB_NAME: your-database-name

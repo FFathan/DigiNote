@@ -1,0 +1,15 @@
+users = {
+    id (primary key, AI)
+    username
+    email
+    password
+}
+
+notes = {
+    noteId
+    userId
+    title
+    description
+    imageUrl
+    updated
+}
