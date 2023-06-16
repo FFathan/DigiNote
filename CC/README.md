@@ -27,8 +27,11 @@ Register Accout
 URL: /register
 Method: POST
 Request Body :
+
 -username as varchar
+
 -email as varchar
+
 password as varchar, must be at least 8 characters, Uppercase, number and special characters
 
 Response
