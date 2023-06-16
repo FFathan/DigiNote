@@ -74,11 +74,11 @@ Response
     "error": false,
     "message": "Note Created!",
     "note": {
-        "noteId": "7e7f83dd-d614-4f34-a967-eeb2f7cf6353",
-        "userId": "6",
+        "noteId": "id",
+        "userId": "id",
         "title": "test dengan postman",
         "description": "iniadalahtextcobacoba",
-        "imageUrl": "https://storage.googleapis.com/digi-photos-bucket/20230613-062953",
+        "imageUrl": "url",
         "updated": "2023-06-13T06:29:54.418Z"
     }
 
@@ -93,27 +93,27 @@ Response berhasil:
     "message": "All Notes retrieved",
     "listnote": []
         {
-            "noteId": "feaf01db-e644-4038-be94-ed8a77efcf8a",
-            "userId": "1",
+            "noteId": "id",
+            "userId": "id",
             "title": "cobacoba",
             "description": "iniadalahtextcobacoba",
-            "imageUrl": "https://storage.googleapis.com/digi-photos-bucket/20230612-161303",
+            "imageUrl": "url",
             "updated": "2023-06-12 16:13:04.836"
         },
         {
-            "noteId": "2889cf55-6345-4629-9e16-7b9d725ac949",
-            "userId": "1",
+            "noteId": "id",
+            "userId": "id",
             "title": "cobacoba",
             "description": "iniadalahtextcobacoba",
-            "imageUrl": "https://storage.googleapis.com/digi-photos-bucket/20230612-161314",
+            "imageUrl": "url",
             "updated": "2023-06-12 16:13:15.330"
         },
         {
-            "noteId": "f0d9c98c-abca-4d22-8e22-cd6c572c2477",
-            "userId": "1",
+            "noteId": "id",
+            "userId": "id",
             "title": "cobacoba",
             "description": "iniadalahtextcobacoba",
-            "imageUrl": "https://storage.googleapis.com/digi-photos-bucket/20230612-161320",
+            "imageUrl": "url",
             "updated": "2023-06-12 16:13:21.632"
         }
     ]
@@ -150,16 +150,16 @@ Request
   const { title, description } = req.body
   const authToken = req.headers.authorization
 
-Response berhasil: Udah dibenerin? {sudah}
+Response
 {
     "error": false,
     "message": "Note updated!",
     "updatedNote": {
-        "noteId": "1bbf2451-0db4-41e6-a59d-e8449858ac1d",
-        "userId": "6",
+        "noteId": "id",
+        "userId": "id",
         "title": "sudahdiubah",
         "description": "ini adalah catatan yang sudah diubah",
-        "imageUrl": "https://storage.googleapis.com/digi-photos-bucket/20230613-061044",
+        "imageUrl": "url",
         "updated": "2023-06-13T12:30:44.042Z"
     }
 }
