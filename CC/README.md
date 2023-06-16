@@ -1,16 +1,15 @@
-##Here is the Deployed Link
+## Here is the Deployed Link
 (https://backend14-dot-diginote-final.et.r.appspot.com)
-
-#Rest API for DigiNote
+# Rest API for DigiNote
 -  this is an API that conclude Register, Login and also Notes handler.
 -  Please read carefully the methods in the routes.js
 -   Handler.js concludes algorithm for the methods
 
-##Install Requirements:
-1. npm init --y (to create package.json file)
-2. npm install
+## Install Requirements:
+- npm init --y (to create package.json file)
+- npm install
 
-##How to deploy it?
+## How to deploy it?
 1. You can deploy it with App engine
 2. Edit your app.yaml data that include the version run time and service.
 3. Change the database variable with your own (database requirement can be seen in the databasereq.txt .
@@ -27,25 +26,22 @@ sudo apt-get install build-essential
 ```
 
 --------------------------------------------------------
-Methods:
+## Methods:
 
-Register Accout
-URL: /register
-Method: POST
-Request Body :
-
--username as varchar
-
--email as varchar
-
-password as varchar, must be at least 8 characters, Uppercase, number and special characters
-
+### Register Accout
+1. URL: /register
+2. Method: POST
+3. Request Body :
+- username as varchar
+- email as varchar
+- password as varchar, must be at least 8 characters, Uppercase, number and special characters
+```json
 Response
 {
 	“error” : false,
 	“message” : “Account registered successfully”
 }
-
+```
 
 
 --------------------------------------------------------------------------------
